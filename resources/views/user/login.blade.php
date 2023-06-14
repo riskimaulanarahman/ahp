@@ -23,7 +23,7 @@
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Silahkan masuk ke akun Anda</p>
+                <p class="login-box-msg">Silahkan masuk ke akun Anda !</p>
                 {{ show_error($errors) }}
                 <form action="{{ route('login.action') }}" method="post">
                     {{ csrf_field() }}
