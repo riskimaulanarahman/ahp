@@ -144,7 +144,7 @@
                             <a href="{{ route('crips.index') }}" class="nav-link">
                                 <i class="nav-icon far fa-circle text-primary"></i>
                                 <p>
-                                    Crips
+                                    Sub Kriteria
                                 </p>
                             </a>
                         </li>
@@ -152,7 +152,7 @@
                             <a href="{{ route('alternatif.index') }}" class="nav-link">
                                 <i class="nav-icon far fa-circle text-primary"></i>
                                 <p>
-                                    Alternatif
+                                    Pendaftaran Pasien
                                 </p>
                             </a>
                         </li>
