@@ -50,8 +50,8 @@
 				<td></td>
 				<td></td> --}}
 				@foreach($rel_alternatif[$row->kode_alternatif] as $k => $v)
-				<td>{{ isset($crips[$v]) ? $crips[$v]->nama_crips : '' }}</td> --}}
-				{{-- @endforeach
+				<td>{{ isset($crips[$v]) ? $crips[$v]->nama_crips : '' }}</td>
+				@endforeach
 				<td>
 					<a class="btn btn-xs btn-danger" href="#"> Berhenti HD</a>
 					<a class="btn btn-xs btn-primary" href="{{ route('rel_alternatif.edit', $row) }}" {{ is_hidden('rel_alternatif.edit') }}><i class="fa fa-edit"></i> Jadwal Baru</a>
