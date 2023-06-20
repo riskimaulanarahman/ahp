@@ -25,9 +25,9 @@
 				<th>No</th>
 				<th>NRM</th>
 				<th>Nama</th>
-				{{-- <th>Tgl Daftar</th>
+				<th>Tgl Daftar</th>
 				<th>Jam Daftar</th>
-				<th>Nilai LFG</th>
+				{{--<th>Nilai LFG</th>
 				<th>Penyakit Penyulit</th>
 				<th>Level Kesadaran</th>
 				<th>Asal Unit</th>
@@ -42,9 +42,9 @@
 				<td>{{ ($rows->currentPage() - 1) * $limit + $key + 1}}</td>
 				<td>{{ $row->kode_alternatif }}</td>
 				<td>{{ $row->nama_alternatif }}</td>
+				<td></td>
+				<td></td>
 				{{-- <td></td>
-				<td></td>
-				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -54,7 +54,7 @@
 				@endforeach
 				<td>
 					<a class="btn btn-xs btn-danger" href="#"> Berhenti HD</a>
-					<a class="btn btn-xs btn-primary" href="{{ route('rel_alternatif.edit', $row) }}" {{ is_hidden('rel_alternatif.edit') }}><i class="fa fa-edit"></i> Jadwal Baru</a>
+					<a class="btn btn-xs btn-primary" href="{{ route('rel_alternatif.edit', $row) }}" {{ is_hidden('rel_alternatif.edit') }}><i class="fa fa-edit"></i> Jadwal</a>
 				</td>
 			</tr>
 			@endforeach

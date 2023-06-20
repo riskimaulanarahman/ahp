@@ -109,7 +109,7 @@ class AlternatifController extends Controller
     public function edit(Alternatif $alternatif)
     {
         $data['row'] = $alternatif;
-        $data['title'] = 'Ubah Alternatif';
+        $data['title'] = 'Ubah Data Pasien';
         return view('alternatif.edit', $data);
     }
 

@@ -17,6 +17,32 @@
 						<label>Nama Pasien <span class="text-danger">*</span></label>
 						<input class="form-control" type="text" name="nama_alternatif" value="{{ old('nama_alternatif', $row->nama_alternatif) }}" readonly>
 					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Tgl Pengajuan <span class="text-danger">*</span></label>
+							<input class="form-control" type="text" name="tgl_pengajuan" value="{{ old('tgl_pengajuan', $row->tgl_pengajuan) }}" readonly>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Jam Pengajuan <span class="text-danger">*</span></label>
+							<input class="form-control" type="text" name="jam_pengajuan" value="{{ old('jam_pengajuan', $row->jam_pengajuan) }}" readonly>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<label>Jenis Tindakan <span class="text-danger">*</span></label>
+							<input class="form-control" type="text" name="jenis_tindakan" value="{{ old('jenis_tindakan', $row->jenis_tindakan) }}" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-6">
+					<p><h2>Penilaian :</h2></p>
 					@foreach($nilais as $nilai)
 					<div class="form-group">
 						<label> {{ $nilai->nama_kriteria }} </label>

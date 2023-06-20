@@ -18,11 +18,11 @@
 					</div>
 					<div class="form-group">
 						<label>Tempat Lahir <span class="text-danger">*</span></label>
-						<input class="form-control" type="text" name="tempat_lahir" value="{{ old('tempat_lahir') }}" />
+						<input class="form-control" type="text" name="tempat_lahir" value="{{ old('tempat_lahir') }}" readonly/>
 					</div>
 					<div class="form-group">
 						<label>Telepon <span class="text-danger">*</span></label>
-						<input class="form-control" type="text" name="telepon" value="{{ old('telepon') }}" />
+						<input class="form-control" type="text" name="telepon" value="{{ old('telepon') }}" readonly/>
 					</div>
 					{{-- <div class="form-group">
 						<label>Keterangan</label>
@@ -30,17 +30,17 @@
 					</div> --}}
 					<div class="form-group">
 						<label>Alamat</label>
-						<input class="form-control" type="text" name="alamat" value="{{ old('alamat') }}" />
+						<input class="form-control" type="text" name="alamat" value="{{ old('alamat') }}" readonly/>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label>Tgl Daftar <span class="text-danger">*</span></label>
-						<input class="form-control" type="date" name="tgl_daftar" value="{{ old('tgl_daftar') }}" />
+						<input class="form-control" type="date" name="tgl_daftar" value="{{ old('tgl_daftar') }}" readonly/>
 					</div>
 					<div class="form-group">
 						<label>Tgl Lahir <span class="text-danger">*</span></label>
-						<input class="form-control" type="date" name="tgl_lahir" value="{{ old('tgl_lahir') }}" />
+						<input class="form-control" type="date" name="tgl_lahir" value="{{ old('tgl_lahir') }}" readonly/>
 					</div>
 				</div>
 			</div>
