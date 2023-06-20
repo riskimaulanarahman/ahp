@@ -175,14 +175,6 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item" {{ is_hidden('alternatif.index') }}>
-                            <a href="{{ route('alternatif.index') }}" class="nav-link">
-                                <i class="nav-icon far fa-circle text-primary"></i>
-                                <p>
-                                    Pendaftaran Pasien
-                                </p>
-                            </a>
-                        </li>
                         <li class="nav-item" {{ is_hidden('menu_bobot') }}>
                             <a href="#" class="nav-link">
                                 <i class="nav-icon far fa-circle text-primary"></i>
@@ -210,6 +202,14 @@
                                 </li>
                                 
                             </ul>
+                        </li>
+                        <li class="nav-item" {{ is_hidden('alternatif.index') }}>
+                            <a href="{{ route('alternatif.index') }}" class="nav-link">
+                                <i class="nav-icon far fa-circle text-primary"></i>
+                                <p>
+                                    Pendaftaran Pasien
+                                </p>
+                            </a>
                         </li>
                         <li class="nav-item" {{ is_hidden('rel_alternatif.index') }}>
                             <a href="{{ route('rel_alternatif.index') }}" class="nav-link">
