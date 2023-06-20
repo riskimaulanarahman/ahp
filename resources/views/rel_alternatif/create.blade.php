@@ -9,11 +9,11 @@
 					{{ show_error($errors) }}
 					{{ csrf_field() }}
 					<div class="form-group">
-						<label>Kode <span class="text-danger">*</span></label>
+						<label>NRM <span class="text-danger">*</span></label>
 						<input class="form-control" type="text" name="kode_alternatif" value="{{ old('kode_alternatif', kode_oto('kode_alternatif', 'tb_alternatif', 'A', 2)) }}" />
 					</div>
 					<div class="form-group">
-						<label>Nama alternatif <span class="text-danger">*</span></label>
+						<label>Nama Pasien <span class="text-danger">*</span></label>
 						<input class="form-control" type="text" name="nama_alternatif" value="{{ old('nama_alternatif') }}" />
 					</div>
 					<div class="form-group">

@@ -23,9 +23,11 @@
 		<table class="table table-bordered table-hover">
 			<thead>
 				<th>No</th>
-				<th>Kode</th>
-				<th>Nama alternatif</th>
-				<th>Keterangan</th>
+				<th>No RM</th>
+				<th>Nama</th>
+				<th>Tgl Lahir</th>
+				<th>Tempat Lahir</th>
+				<th>Alamat</th>
 				<th>Aksi</th>
 			</thead>
 			@foreach($rows as $key => $row)
@@ -33,7 +35,10 @@
 				<td>{{ ($rows->currentPage() - 1) * $limit + $key + 1 }}</td>
 				<td>{{ $row->kode_alternatif }}</td>
 				<td><a href="{{ route('alternatif.detail', ['kode_alternatif'=> $row ]) }}">{{ $row->nama_alternatif }}</a></td>
-				<td>{{ $row->keterangan }}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				{{-- <td>{{ $row->keterangan }}</td> --}}
 				<td>
 					<a class="btn btn-xs btn-info" href="{{ route('alternatif.edit', $row) }}" {{ is_hidden('alternatif.edit') }}><i class="fa fa-edit"></i> Ubah</a>
 					<form action="{{ route('alternatif.destroy', $row) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Hapus Data?')" {{ is_hidden('alternatif.destroy') }}>

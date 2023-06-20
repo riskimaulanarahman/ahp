@@ -237,7 +237,7 @@ function is_able($action)
             'user.password', 'user.password.update', 'user.logout', 'user.profil', 'user.profil.update',
             'kriteria.index', 'kriteria.create', 'kriteria.store', 'kriteria.edit', 'kriteria.update', 'kriteria.destroy',
             'crips.index', 'crips.create', 'crips.store', 'crips.edit', 'crips.update', 'crips.destroy',
-            'menu_bobot', 'is_admin',
+            'master_referensi','menu_bobot', 'is_admin',
             'rel_kriteria.index', 'rel_kriteria.simpan',
             'rel_crips.index', 'rel_crips.simpan',
             'alternatif.index', 'alternatif.create', 'alternatif.store', 'alternatif.edit', 'alternatif.update', 'alternatif.destroy', 'alternatif.cetak', 'alternatif.detail', 'alternatif.detail.update',

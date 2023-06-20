@@ -4,7 +4,7 @@
 <table class="table table-bordered table-hover">
     <thead>
         <th>No</th>
-        <th>Kode</th>
+        <th>NRM</th>
         <th>Nama</th>
         @foreach($kriterias as $kriteria)
         <th>{{ $kriteria->nama_kriteria }}</th>

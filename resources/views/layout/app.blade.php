@@ -132,7 +132,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item" {{ is_hidden('kriteria.index') }}>
+                        {{-- <li class="nav-item" {{ is_hidden('kriteria.index') }}>
                             <a href="{{ route('kriteria.index') }}" class="nav-link">
                                 <i class="nav-icon far fa-circle text-primary"></i>
                                 <p>
@@ -147,6 +147,33 @@
                                     Sub Kriteria
                                 </p>
                             </a>
+                        </li> --}}
+                        <li class="nav-item" {{ is_hidden('master_referensi') }}>
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon far fa-circle text-primary"></i>
+                                <p>
+                                    Master Referensi
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item" {{ is_hidden('kriteria.index') }}>
+                                    <a href="{{ route('kriteria.index') }}" class="nav-link">
+                                        <i class="nav-icon far fa-circle"></i>
+                                        <p>
+                                            Kriteria
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item" {{ is_hidden('crips.index') }}>
+                                    <a href="{{ route('crips.index') }}" class="nav-link">
+                                        <i class="nav-icon far fa-circle"></i>
+                                        <p>
+                                            Sub Kriteria
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item" {{ is_hidden('alternatif.index') }}>
                             <a href="{{ route('alternatif.index') }}" class="nav-link">
@@ -181,15 +208,16 @@
                                         </p>
                                     </a>
                                 </li>
-                                <li class="nav-item" {{ is_hidden('rel_alternatif.index') }}>
-                                    <a href="{{ route('rel_alternatif.index') }}" class="nav-link">
-                                        <i class="nav-icon far fa-circle"></i>
-                                        <p>
-                                            Nilai Alternatif
-                                        </p>
-                                    </a>
-                                </li>
+                                
                             </ul>
+                        </li>
+                        <li class="nav-item" {{ is_hidden('rel_alternatif.index') }}>
+                            <a href="{{ route('rel_alternatif.index') }}" class="nav-link">
+                                <i class="nav-icon far fa-circle text-primary"></i>
+                                <p>
+                                    Pengajuan Jadwal HD
+                                </p>
+                            </a>
                         </li>
                         <li class="nav-item" {{ is_hidden('hitung.index') }}>
                             <a href="{{ route('hitung.index') }}" class="nav-link">

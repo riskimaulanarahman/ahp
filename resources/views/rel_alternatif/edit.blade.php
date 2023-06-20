@@ -10,11 +10,11 @@
 					{{ csrf_field() }}
 					{{ method_field('PUT') }}
 					<div class="form-group">
-						<label>Kode alternatif <span class="text-danger">*</span></label>
+						<label>NRM <span class="text-danger">*</span></label>
 						<input class="form-control" type="text" name="kode_alternatif" value="{{ old('kode_alternatif', $row->kode_alternatif) }}" readonly>
 					</div>
 					<div class="form-group">
-						<label>Nama alternatif <span class="text-danger">*</span></label>
+						<label>Nama Pasien <span class="text-danger">*</span></label>
 						<input class="form-control" type="text" name="nama_alternatif" value="{{ old('nama_alternatif', $row->nama_alternatif) }}" readonly>
 					</div>
 					@foreach($nilais as $nilai)
@@ -30,7 +30,7 @@
 		</div>
 		<div class="card-footer">
 			<button class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
-			<a class="btn btn-danger" href="{{URL('alternatif')}}"><i class="fa fa-backward"></i> Kembali</a>
+			<a class="btn btn-danger" href="{{URL('rel_alternatif')}}"><i class="fa fa-backward"></i> Kembali</a>
 		</div>
 	</div>
 </form>

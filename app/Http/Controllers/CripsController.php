@@ -21,7 +21,7 @@ class CripsController extends Controller
     public function index(Request $request)
     {
         $data['q'] = $request->input('q');
-        $data['title'] = 'Data Crips';
+        $data['title'] = 'Sub Kriteria';
         $data['limit'] = 10;
         $data['rows'] = Crips::where('nama_crips', 'like', '%' . $data['q'] . '%')
             ->leftJoin('tb_kriteria', 'tb_kriteria.kode_kriteria', '=', 'tb_crips.kode_kriteria')

@@ -46,7 +46,7 @@ class AlternatifController extends Controller
     public function index(Request $request)
     {
         $data['q'] = $request->input('q');
-        $data['title'] = 'Data Alternatif';
+        $data['title'] = 'Pendaftaran Pasien';
         $data['limit'] = 25;
         $data['rows'] = Alternatif::where('nama_alternatif', 'like', '%' . $data['q'] . '%')
             ->orderBy('kode_alternatif')
@@ -61,7 +61,7 @@ class AlternatifController extends Controller
      */
     public function create()
     {
-        $data['title'] = 'Tambah Alternatif';
+        $data['title'] = 'Pendaftaran Pasien';
         return view('alternatif.create', $data);
     }
 

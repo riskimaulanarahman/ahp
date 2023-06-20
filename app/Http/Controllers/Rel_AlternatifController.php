@@ -24,7 +24,7 @@ class Rel_AlternatifController extends Controller
     public function index(Request $request)
     {
         $data['q'] = $request->input('q');
-        $data['title'] = 'Nilai Alternatif';
+        $data['title'] = 'Pengajuan Jadwal HD';
         $data['limit'] = 10;
         $data['rows'] = Alternatif::where('nama_alternatif', 'like', '%' . $data['q'] . '%')
             ->orderBy('kode_alternatif')
@@ -77,7 +77,7 @@ class Rel_AlternatifController extends Controller
     {
         $data['row'] = Alternatif::findOrFail($alternatif);
         $data['nilais'] = get_results("SELECT * FROM tb_rel_alternatif r INNER JOIN tb_kriteria k ON k.kode_kriteria=r.kode_kriteria WHERE kode_alternatif='$alternatif'");
-        $data['title'] = 'Ubah Nilai Alternatif';
+        $data['title'] = 'Pengajuan Jadwal HD';
         return view('rel_alternatif.edit', $data);
     }
 

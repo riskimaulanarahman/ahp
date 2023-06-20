@@ -11,6 +11,9 @@
 			<div class="form-group mr-1">
 				<button class="btn btn-success"><i class="fa fa-search"></i> Cari</button>
 			</div>
+			<div class="form-group mr-1">
+				<a class="btn btn-primary" href="#"><i class="fa fa-plus"></i> Pengajuan Baru</a>
+			</div>
 			<div class="form-group mr-1" {{ is_hidden('rel_alternatif.cetak') }}>
 				<a class="btn btn-default" href="{{ route('rel_alternatif.cetak') }}" target="_blank"><span class="fa fa-print"></span> Cetak</a>
 			</div>
@@ -20,11 +23,18 @@
 		<table class="table table-bordered table-hover">
 			<thead>
 				<th>No</th>
-				<th>Kode</th>
-				<th>Nama alternatif</th>
-				@foreach($kriterias as $kriteria)
+				<th>NRM</th>
+				<th>Nama</th>
+				<th>Tgl Daftar</th>
+				<th>Jam Daftar</th>
+				<th>Nilai LFG</th>
+				<th>Penyakit Penyulit</th>
+				<th>Level Kesadaran</th>
+				<th>Asal Unit</th>
+				<th>Jenis Tindakan</th>
+				{{-- @foreach($kriterias as $kriteria)
 				<th>{{ $kriteria->nama_kriteria }}</th>
-				@endforeach
+				@endforeach --}}
 				<th>Aksi</th>
 			</thead>
 			@foreach($rows as $key => $row)
@@ -32,11 +42,19 @@
 				<td>{{ ($rows->currentPage() - 1) * $limit + $key + 1}}</td>
 				<td>{{ $row->kode_alternatif }}</td>
 				<td>{{ $row->nama_alternatif }}</td>
-				@foreach($rel_alternatif[$row->kode_alternatif] as $k => $v)
-				<td>{{ isset($crips[$v]) ? $crips[$v]->nama_crips : '' }}</td>
-				@endforeach
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				{{-- @foreach($rel_alternatif[$row->kode_alternatif] as $k => $v)
+				<td>{{ isset($crips[$v]) ? $crips[$v]->nama_crips : '' }}</td> --}}
+				{{-- @endforeach --}}
 				<td>
-					<a class="btn btn-xs btn-info" href="{{ route('rel_alternatif.edit', $row) }}" {{ is_hidden('rel_alternatif.edit') }}><i class="fa fa-edit"></i> Ubah</a>
+					<a class="btn btn-xs btn-danger" href="#"> Berhenti HD</a>
+					<a class="btn btn-xs btn-primary" href="{{ route('rel_alternatif.edit', $row) }}" {{ is_hidden('rel_alternatif.edit') }}><i class="fa fa-edit"></i> Jadwal Baru</a>
 				</td>
 			</tr>
 			@endforeach
