@@ -32,6 +32,8 @@ class Rel_AlternatifController extends Controller
         $data['rel_alternatif'] = get_rel_alternatif();
         $data['crips'] = get_crips();
         $data['kriterias'] = get_kriteria();
+
+        // dd($data);
         return view('rel_alternatif.index', $data);
     }
 

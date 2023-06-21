@@ -152,11 +152,19 @@
                             <a href="#" class="nav-link">
                                 <i class="nav-icon far fa-circle text-primary"></i>
                                 <p>
-                                    Master Referensi
+                                    Referensi
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon far fa-circle"></i>
+                                        <p>
+                                            Konfigurasi
+                                        </p>
+                                    </a>
+                                </li>
                                 <li class="nav-item" {{ is_hidden('kriteria.index') }}>
                                     <a href="{{ route('kriteria.index') }}" class="nav-link">
                                         <i class="nav-icon far fa-circle"></i>
