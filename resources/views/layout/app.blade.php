@@ -231,7 +231,7 @@
                             <a href="{{ route('hitung.index') }}" class="nav-link">
                                 <i class="nav-icon far fa-circle text-primary"></i>
                                 <p>
-                                    Perhitungan
+                                    Jadwal HD
                                 </p>
                             </a>
                         </li>
