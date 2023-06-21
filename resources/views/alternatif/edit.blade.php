@@ -19,11 +19,11 @@
 					</div>
 					<div class="form-group">
 						<label>Tempat Lahir <span class="text-danger">*</span></label>
-						<input class="form-control" type="text" name="tempat_lahir" value="{{ old('tempat_lahir', $row->tempat_lahir) }}" readonly>
+						<input class="form-control" type="text" name="tempat_lahir" value="{{ old('tempat_lahir', $row->tempat_lahir) }}" >
 					</div>
 					<div class="form-group">
 						<label>Telepon <span class="text-danger">*</span></label>
-						<input class="form-control" type="text" name="telepon" value="{{ old('telepon', $row->telepon) }}" readonly>
+						<input class="form-control" type="text" name="telepon" value="{{ old('telepon', $row->telepon) }}" >
 					</div>
 					{{-- <div class="form-group">
 						<label>Keterangan</label>
@@ -31,17 +31,17 @@
 					</div> --}}
 					<div class="form-group">
 						<label>Alamat <span class="text-danger">*</span></label>
-						<input class="form-control" type="text" name="alamat" value="{{ old('alamat', $row->alamat) }}" readonly>
+						<input class="form-control" type="text" name="alamat" value="{{ old('alamat', $row->alamat) }}" >
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label>Tgl Daftar <span class="text-danger">*</span></label>
-						<input class="form-control" type="text" name="tgl_daftar" value="{{ old('tgl_daftar', $row->tgl_daftar) }}" readonly>
+						<input class="form-control" type="date" name="tgl_daftar" value="{{ old('tgl_daftar', $row->tgl_daftar) }}" >
 					</div>
 					<div class="form-group">
 						<label>Tgl Lahir <span class="text-danger">*</span></label>
-						<input class="form-control" type="text" name="tgl_lahir" value="{{ old('tgl_lahir', $row->tgl_lahir) }}" readonly>
+						<input class="form-control" type="date" name="tgl_lahir" value="{{ old('tgl_lahir', $row->tgl_lahir) }}" >
 					</div>
 				</div>
 			</div>

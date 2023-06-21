@@ -127,8 +127,9 @@ class AlternatifController extends Controller
         ], [
             'nama_alternatif.required' => 'Nama alternatif harus diisi',
         ]);
-        $alternatif->nama_alternatif = $request->nama_alternatif;
-        $alternatif->keterangan = $request->keterangan;
+        // $alternatif->nama_alternatif = $request->nama_alternatif;
+        // $alternatif->keterangan = $request->keterangan;
+        $alternatif->fill($request->all());
         $alternatif->save();
         return redirect('alternatif')->with('message', 'Data berhasil diubah!');
     }

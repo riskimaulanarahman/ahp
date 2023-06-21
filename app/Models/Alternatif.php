@@ -13,5 +13,15 @@ class Alternatif extends Model
     protected $primaryKey = 'kode_alternatif';
     public $incrementing = false;
 
-    protected $fillable = ['kode_alternatif', 'nama_alternatif', 'total', 'rank'];
+    protected $fillable = [
+        'kode_alternatif',
+        'nama_alternatif',
+        'tempat_lahir',
+        'telepon',
+        'alamat',
+        'tgl_lahir',
+        'tgl_daftar',
+        'total',
+        'rank'
+    ];
 }

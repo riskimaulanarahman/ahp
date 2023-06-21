@@ -83,7 +83,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{{route('home')}}" class="brand-link">
-                <img src="{{ asset('images/logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="{{ asset('images/logoahp.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
             </a>
 
@@ -158,7 +158,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('konfigurasi.index') }}" class="nav-link">
                                         <i class="nav-icon far fa-circle"></i>
                                         <p>
                                             Konfigurasi
@@ -204,7 +204,7 @@
                                     <a href="{{ route('rel_crips.index') }}" class="nav-link">
                                         <i class="nav-icon far fa-circle"></i>
                                         <p>
-                                            Bobot Crips
+                                            Bobot Sub Kriteria
                                         </p>
                                     </a>
                                 </li>
@@ -227,11 +227,19 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('jadwal.index') }}" class="nav-link">
+                                <i class="nav-icon far fa-circle text-primary"></i>
+                                <p>
+                                    Jadwal HD
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item" {{ is_hidden('hitung.index') }}>
                             <a href="{{ route('hitung.index') }}" class="nav-link">
                                 <i class="nav-icon far fa-circle text-primary"></i>
                                 <p>
-                                    Jadwal HD
+                                    Perhitungan
                                 </p>
                             </a>
                         </li>

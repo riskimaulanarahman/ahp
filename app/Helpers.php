@@ -243,6 +243,8 @@ function is_able($action)
             'alternatif.index', 'alternatif.create', 'alternatif.store', 'alternatif.edit', 'alternatif.update', 'alternatif.destroy', 'alternatif.cetak', 'alternatif.detail', 'alternatif.detail.update',
             'rel_alternatif.index', 'rel_alternatif.edit', 'rel_alternatif.update',
             'hitung.index', 'hitung.cetak',
+            'konfigurasi.index', 'konfigurasi.create', 'konfigurasi.store', 'konfigurasi.edit', 'konfigurasi.update', 'konfigurasi.destroy',
+            'jadwal.index',
         ],
         'user' => [
             'home',

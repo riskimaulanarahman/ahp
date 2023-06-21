@@ -22,19 +22,23 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Tgl Pengajuan <span class="text-danger">*</span></label>
-							<input class="form-control" type="text" name="tgl_pengajuan" value="{{ old('tgl_pengajuan', $row->tgl_pengajuan) }}" readonly>
+							<input class="form-control" type="date" name="tgl_pengajuan" value="{{ old('tgl_pengajuan', $rows->tgl_pengajuan) }}" >
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Jam Pengajuan <span class="text-danger">*</span></label>
-							<input class="form-control" type="text" name="jam_pengajuan" value="{{ old('jam_pengajuan', $row->jam_pengajuan) }}" readonly>
+							<input class="form-control" type="time" name="jam_pengajuan" value="{{ old('jam_pengajuan', $rows->jam_pengajuan) }}" >
 						</div>
 					</div>
 					<div class="col-md-12">
 						<div class="form-group">
 							<label>Jenis Tindakan <span class="text-danger">*</span></label>
-							<input class="form-control" type="text" name="jenis_tindakan" value="{{ old('jenis_tindakan', $row->jenis_tindakan) }}" readonly>
+							<select class="form-control" name="jenis_tindakan">
+								<option value="">- Selected -</option>
+								<option value="inisiasi" {{ old('jenis_tindakan', $rows->jenis_tindakan) == 'inisiasi' ? 'selected' : '' }}>Inisiasi</option>
+								<option value="reguler" {{ old('jenis_tindakan', $rows->jenis_tindakan) == 'reguler' ? 'selected' : '' }}>Reguler</option>
+							</select>
 						</div>
 					</div>
 				</div>

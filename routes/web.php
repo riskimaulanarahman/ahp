@@ -9,6 +9,7 @@ use App\Http\Controllers\Rel_AlternatifController;
 use App\Http\Controllers\Rel_CripsController;
 use App\Http\Controllers\Rel_KriteriaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KonfigurasiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,6 +52,14 @@ Route::middleware(['auth', 'level'])->group(
         Route::post('/user/password', [UserController::class, 'passwordUpdate'])->name('user.password.update');
         Route::get('/user/logout', [UserController::class, 'logout'])->name('user.logout');
         Route::resource('user', UserController::class);
+
+        // Route::get('/konfigurasi', [KonfigurasiController::class, 'index'])->name('konfigurasi.index');
+
+        Route::resource('/konfigurasi', KonfigurasiController::class);
+        Route::get('/jadwal',function(){
+            $data['title'] = 'Jadwal - Periode Perubahan';
+            return view('jadwal.index',$data);
+        })->name('jadwal.index');
     }
 );
 Route::get('/login', [UserController::class, 'loginForm'])->name('login');

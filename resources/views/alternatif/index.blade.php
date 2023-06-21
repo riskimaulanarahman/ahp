@@ -35,9 +35,9 @@
 				<td>{{ ($rows->currentPage() - 1) * $limit + $key + 1 }}</td>
 				<td>{{ $row->kode_alternatif }}</td>
 				<td><a href="{{ route('alternatif.detail', ['kode_alternatif'=> $row ]) }}">{{ $row->nama_alternatif }}</a></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>{{ $row->tgl_lahir }}</td>
+				<td>{{ $row->tempat_lahir }}</td>
+				<td>{{ $row->alamat }}</td>
 				{{-- <td>{{ $row->keterangan }}</td> --}}
 				<td>
 					<a class="btn btn-xs btn-info" href="{{ route('alternatif.edit', $row) }}" {{ is_hidden('alternatif.edit') }}><i class="fa fa-edit"></i> Ubah</a>

@@ -26,7 +26,9 @@ class Rel_AlternatifController extends Controller
         $data['q'] = $request->input('q');
         $data['title'] = 'Pengajuan Jadwal HD';
         $data['limit'] = 10;
-        $data['rows'] = Alternatif::where('nama_alternatif', 'like', '%' . $data['q'] . '%')
+        $data['rows'] = Alternatif::select('tb_alternatif.*','tb_rel_alternatif.tgl_pengajuan','tb_rel_alternatif.jam_pengajuan','tb_rel_alternatif.jenis_tindakan')
+            ->where('nama_alternatif', 'like', '%' . $data['q'] . '%')
+            ->leftJoin('tb_rel_alternatif','tb_alternatif.kode_alternatif','tb_rel_alternatif.kode_alternatif')
             ->orderBy('kode_alternatif')
             ->paginate($data['limit'])->withQueryString();
         $data['rel_alternatif'] = get_rel_alternatif();
@@ -78,6 +80,7 @@ class Rel_AlternatifController extends Controller
     public function edit(string $alternatif)
     {
         $data['row'] = Alternatif::findOrFail($alternatif);
+        $data['rows'] = Rel_Alternatif::where('kode_alternatif', $alternatif)->first();
         $data['nilais'] = get_results("SELECT * FROM tb_rel_alternatif r INNER JOIN tb_kriteria k ON k.kode_kriteria=r.kode_kriteria WHERE kode_alternatif='$alternatif'");
         $data['title'] = 'Pengajuan Jadwal HD';
         return view('rel_alternatif.edit', $data);
@@ -92,11 +95,18 @@ class Rel_AlternatifController extends Controller
      */
     public function update(Request $request, Rel_Alternatif $rel_Alternatif)
     {
+        // dd($request);
+        // return false;
         $request->validate([
             'nilai.*' => 'required',
         ], [
             'nilai.*.required' => 'Nilai :attribute harus diisi',
         ]);
+        $alternatif = Rel_Alternatif::where('kode_alternatif',$request->kode_alternatif)->first();
+        $alternatif->tgl_pengajuan = $request->tgl_pengajuan;
+        $alternatif->jam_pengajuan = $request->jam_pengajuan;
+        $alternatif->jenis_tindakan = $request->jenis_tindakan;
+        $alternatif->save();
         foreach ($request->nilai as $key => $val) {
             $rel_alternatif = Rel_Alternatif::find($key);
             $rel_alternatif->kode_crips = $val;
