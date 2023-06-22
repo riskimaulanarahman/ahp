@@ -10,7 +10,7 @@ class Rel_CripsController extends Controller
 {
     function index(Request $request)
     {
-        $data['title'] = 'Bobot Crips';
+        $data['title'] = 'Bobot Sub Kriteria';
         $data['kode_kriteria'] = $request->get('kode_kriteria');
         $data['rel_crips'] = get_rel_crips($data['kode_kriteria']);
         $data['ahp'] = new AHP($data['rel_crips']);
