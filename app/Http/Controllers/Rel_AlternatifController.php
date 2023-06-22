@@ -30,6 +30,8 @@ class Rel_AlternatifController extends Controller
             ->where('nama_alternatif', 'like', '%' . $data['q'] . '%')
             ->leftJoin('tb_rel_alternatif','tb_alternatif.kode_alternatif','tb_rel_alternatif.kode_alternatif')
             ->orderBy('kode_alternatif')
+            ->where('kode_kriteria','K01')
+            // ->groupBy('tb_rel_alternatif.kode_alternatif')
             ->paginate($data['limit'])->withQueryString();
         $data['rel_alternatif'] = get_rel_alternatif();
         $data['crips'] = get_crips();
