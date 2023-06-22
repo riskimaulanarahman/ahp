@@ -32,13 +32,14 @@
 				<th>Level Kesadaran</th>
 				<th>Asal Unit</th>
 				<th>Jenis Tindakan</th> --}}
-				@foreach($kriterias as $kriteria)
+				{{-- @foreach($kriterias as $kriteria)
 				<th>{{ $kriteria->nama_kriteria }}</th>
-				@endforeach
+				@endforeach --}}
 				<th>Jenis Tindakan</th>
 				<th>Aksi</th>
 			</thead>
 			@foreach($rows as $key => $row)
+			{{-- {{ dd($row) }} --}}
 			<tr>
 				<td>{{ ($rows->currentPage() - 1) * $limit + $key + 1}}</td>
 				<td>{{ $row->kode_alternatif }}</td>
@@ -50,9 +51,9 @@
 				<td></td>
 				<td></td>
 				<td></td> --}}
-				@foreach($rel_alternatif[$row->kode_alternatif] as $k => $v)
+				{{-- @foreach($rel_alternatif[$row->kode_alternatif] as $k => $v)
 				<td>{{ isset($crips[$v]) ? $crips[$v]->nama_crips : '' }}</td>
-				@endforeach
+				@endforeach --}}
 				<td>{{ $row->jenis_tindakan }}</td>
 				<td>
 					<a class="btn btn-xs btn-danger" href="#"> Berhenti HD</a>

@@ -10,7 +10,7 @@
 					{{ csrf_field() }}
 					{{ method_field('PUT') }}
 					<div class="form-group">
-						<label>Nama/No RM <span class="text-danger">*</span></label>
+						<label>No RM <span class="text-danger">*</span></label>
 						<input class="form-control" type="text" name="kode_alternatif" value="{{ old('kode_alternatif', $row->kode_alternatif) }}" readonly>
 					</div>
 					<div class="form-group">

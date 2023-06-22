@@ -77,9 +77,9 @@ class AlternatifController extends Controller
             'kode_alternatif' => 'required|unique:tb_alternatif',
             'nama_alternatif' => 'required',
         ], [
-            'kode_alternatif.required' => 'Kode alternatif harus diisi',
-            'kode_alternatif.unique' => 'Kode alternatif harus unik',
-            'nama_alternatif.required' => 'Nama alternatif harus diisi',
+            'kode_alternatif.required' => 'Kode harus diisi',
+            'kode_alternatif.unique' => 'Kode harus unik',
+            'nama_alternatif.required' => 'Nama harus diisi',
         ]);
         $alternatif = new Alternatif($request->all());
         $alternatif->save();
