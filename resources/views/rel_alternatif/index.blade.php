@@ -11,9 +11,9 @@
 			<div class="form-group mr-1">
 				<button class="btn btn-success"><i class="fa fa-search"></i> Cari</button>
 			</div>
-			{{-- <div class="form-group mr-1">
+			<div class="form-group mr-1">
 				<a class="btn btn-primary" href="#"><i class="fa fa-plus"></i> Pengajuan Baru</a>
-			</div> --}}
+			</div>
 			<div class="form-group mr-1" {{ is_hidden('rel_alternatif.cetak') }}>
 				<a class="btn btn-default" href="{{ route('rel_alternatif.cetak') }}" target="_blank"><span class="fa fa-print"></span> Cetak</a>
 			</div>
