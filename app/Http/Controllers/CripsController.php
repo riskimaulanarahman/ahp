@@ -9,7 +9,7 @@ class CripsController extends Controller
 {
     public function cetak()
     {
-        $data['title'] = 'Laporan Data Crips';
+        $data['title'] = 'Laporan Data';
         $data['rows'] = Crips::orderBy('kode_crips')->get();
         return view('crips.cetak', $data);
     }
@@ -38,7 +38,7 @@ class CripsController extends Controller
      */
     public function create()
     {
-        $data['title'] = 'Tambah Crips';
+        $data['title'] = 'Tambah Sub Kriteria';
         return view('crips.create', $data);
     }
 
@@ -89,7 +89,7 @@ class CripsController extends Controller
     {
         $crips = Crips::findOrFail($crips);
         $data['row'] = $crips;
-        $data['title'] = 'Ubah Crips';
+        $data['title'] = 'Ubah Sub Kriteria';
         return view('crips.edit', $data);
     }
 

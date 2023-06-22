@@ -19,7 +19,7 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label>Nama crips <span class="text-danger">*</span></label>
+						<label>Nama <span class="text-danger">*</span></label>
 						<input class="form-control" type="text" name="nama_crips" value="{{ old('nama_crips') }}" />
 					</div>
 				</div>

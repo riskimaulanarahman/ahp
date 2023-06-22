@@ -25,7 +25,7 @@
 				<th>No</th>
 				<th>Kode</th>
 				<th>Kriteria</th>
-				<th>Nama crips</th>
+				<th>Nama</th>
 				<th>Bobot</th>
 				<th>Aksi</th>
 			</thead>

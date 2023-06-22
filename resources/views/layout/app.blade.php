@@ -282,9 +282,10 @@
 
         <footer class="main-footer d-print-none">
             <div class="float-right d-none d-sm-block">
-                Designed by <a href="https://www.youtube.com/channel/UCHIQkzxRJIHG8D97uuJpSXw?view_as=subscriber">Kayan Herdiana</a>
+                {{-- Designed by <a href="https://www.youtube.com/channel/UCHIQkzxRJIHG8D97uuJpSXw?view_as=subscriber">Kayan Herdiana</a> --}}
             </div>
-            <strong>Copyright &copy; {{ date('Y') }} RumahSourceCode.Com. </strong> All rights reserved.
+            {{-- <strong>Copyright &copy; {{ date('Y') }} RumahSourceCode.Com. </strong> All rights reserved. --}}
+            <strong>SPK HD | 2023.</strong>
         </footer>
 
         <!-- Control Sidebar -->
