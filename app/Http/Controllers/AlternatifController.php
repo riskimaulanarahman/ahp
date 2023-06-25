@@ -141,6 +141,9 @@ class AlternatifController extends Controller
         // $alternatif->keterangan = $request->keterangan;
         $alternatif->fill($request->all());
         $alternatif->save();
+
+        $updrelalt = query("UPDATE tb_rel_alternatif set kode_crips='$request->unitasal' where kode_alternatif='$request->kode_alternatif' and kode_kriteria='K05'");
+
         return redirect('alternatif')->with('message', 'Data berhasil diubah!');
     }
 
