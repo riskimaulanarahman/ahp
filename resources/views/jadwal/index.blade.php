@@ -8,6 +8,9 @@
 </style>
 {{ show_msg() }}
 
+{{-- @isset($total)
+    Belum ada Jadwal yang diajukan
+@else --}}
 <div class="card card-primary card-outline">
     <div class="card-header">
         <h3 class="card-title">Periode Perubahan</h3>
@@ -39,7 +42,7 @@
                     <th rowspan="2" style="text-align:center; vertical-align: top;">Level Kesadaran</th>
                     <th rowspan="2" style="text-align:center; vertical-align: top;">Asal Unit</th>
                     <th rowspan="2" style="text-align:center; vertical-align: top;">Keadaan Umum</th>
-                    {{-- <th rowspan="2" style="text-align:center; vertical-align: top;">Nilai V</th> --}}
+                    <th rowspan="2" style="text-align:center; vertical-align: top;">Nilai V</th>
                 </tr>
                 <tr>
                     <th>Shift 1</th>
@@ -82,7 +85,7 @@
                 <td>{{ $alternatifs[$key]['nama_K03'] }}</td>
                 <td>{{ $alternatifs[$key]['nama_K05'] }}</td>
                 <td>{{ $alternatifs[$key]['nama_K04'] }}</td>
-                {{-- <td>{{ round($total[$key], 4) }}</td> --}}
+                <td>{{ round($total[$key], 4) }}</td>
             </tr>
             @endforeach
         </table>
@@ -91,7 +94,7 @@
         <a class="btn btn-default" href="{{ route('hitung.cetak') }}" target="_blank"><span class="fa fa-print"></span> Cetak</a>
     </div> --}}
 </div>
-
+{{-- @endif --}}
 
 
 @endsection

@@ -110,6 +110,7 @@ class HitungController extends Controller
         $data['rel_alternatif'] = get_jadwal();
         /** memanggil data semua crisp */
         $data['crips'] = get_crips();
+
         /** menyimpan nilai alterantif berdasarkan nilai prioritas crisp itu */
         $data['rel_nilai'] = array();
         /** perulangan sesuai jumlah alternatif */
@@ -123,6 +124,7 @@ class HitungController extends Controller
             }
         }
 
+
         /** tempat menyimpan bobot prioritas kriteria */
         $bobot = array();
         foreach ($kriteria as $row) {
@@ -130,26 +132,41 @@ class HitungController extends Controller
             /** menyimpan data semua kriteria dengan key kode_kriteria */
             $data['kriterias'][$row->kode_kriteria] = $row;
         }
+
+        // $data['total'] = 0;
+        $totalan = array();
         /** perulangan sesuai jumlah alternatif */
         foreach ($data['rel_nilai'] as $key => $val) {
             /** perulangan sejumlah kriteria */
+            // return $val;
+
             foreach ($val as $k => $v) {
                 /** mengalikan nilai alternatif dengan bobot kriteria */
                 $data['terbobot'][$key][$k] = $v * $bobot[$k];
             }
             /** mentotalkan data terbobot setiap alternatif */
             $data['total'][$key] = array_sum($data['terbobot'][$key]);
-        }
+            $totalan = array_sum($data['terbobot'][$key]);
 
+        }
+        
         /** mencari rangking berdasarkan total */
-        $data['rank'] = $this->rank($data['total']);
-        foreach ($data['rank'] as $key => $val) {
-            /** simpan rangking dan total ke database (tb_alternatif) */
-            query("UPDATE tb_alternatif SET total='{$data['total'][$key]}', rank='{$data['rank'][$key]}' WHERE kode_alternatif='$key'");
+        // if($totalan == null) {
+        //     $hasilan = 0;
+        // } else {
+        //     $hasilan = 1;
+        // }
+        if($totalan == null) {
+            return redirect()->route('message')->with('message', "Belum ada Jadwal yang diajukan.");
+        } else {
+            $data['rank'] = $this->rank($data['total']);
+            foreach ($data['rank'] as $key => $val) {
+                /** simpan rangking dan total ke database (tb_alternatif) */
+                query("UPDATE tb_alternatif SET total='{$data['total'][$key]}', rank='{$data['rank'][$key]}' WHERE kode_alternatif='$key'");
+            }
         }
         /** menyimpan data semua alternatif */
         $data['alternatifs'] = get_jadwalalternatif();
-        // return $data['alternatifs'];
         
         $data['title'] = 'Jadwal HD';
 
