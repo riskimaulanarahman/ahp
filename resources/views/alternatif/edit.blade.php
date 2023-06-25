@@ -23,7 +23,7 @@
 					</div>
 					<div class="form-group">
 						<label>Telepon <span class="text-danger">*</span></label>
-						<input class="form-control" type="text" name="telepon" value="{{ old('telepon', $row->telepon) }}" >
+						<input class="form-control" type="number" name="telepon" value="{{ old('telepon', $row->telepon) }}" >
 					</div>
 					{{-- <div class="form-group">
 						<label>Keterangan</label>
@@ -42,6 +42,15 @@
 					<div class="form-group">
 						<label>Tgl Lahir <span class="text-danger">*</span></label>
 						<input class="form-control" type="date" name="tgl_lahir" value="{{ old('tgl_lahir', $row->tgl_lahir) }}" >
+					</div>
+					<div class="form-group">
+						<label>Unit Asal <span class="text-danger">*</span></label>
+						<select class="form-control" name="unitasal">
+								<option value="">- Selected -</option>
+							@foreach($unitasal as $unit)
+								<option value="{{$unit->kode_crips}}" {{ old('unitasal', $unit->kode_crips) == $row->kode_crips ? 'selected' : '' }}>{{$unit->nama_crips}}</option>
+							@endforeach
+						</select>
 					</div>
 				</div>
 			</div>

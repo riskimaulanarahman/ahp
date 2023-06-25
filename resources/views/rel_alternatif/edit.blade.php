@@ -60,8 +60,33 @@
 		</div>
 		<div class="card-footer">
 			<button class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+			<button type="button" id="btnajukan" class="btn btn-warning" onclick="ajukan('{{$row->kode_alternatif}}')"><i class="fa fa-upload"></i> Ajukan</button>
 			<a class="btn btn-danger" href="{{URL('rel_alternatif')}}"><i class="fa fa-backward"></i> Kembali</a>
 		</div>
 	</div>
 </form>
 @endsection
+
+
+<script>
+	function ajukan(kode) {
+
+		var confirmed = confirm("Apakah Anda Yakin ?");
+
+		if (confirmed) {
+			var xhr = new XMLHttpRequest();
+
+			xhr.open('GET', '/api/updatestatus/'+kode+'?status=1', true);
+
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					var response = xhr.responseText;
+					window.location.href = "/rel_alternatif";
+				}
+			};
+
+			xhr.send(); 
+		}
+	}
+
+</script>

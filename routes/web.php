@@ -56,10 +56,11 @@ Route::middleware(['auth', 'level'])->group(
         // Route::get('/konfigurasi', [KonfigurasiController::class, 'index'])->name('konfigurasi.index');
 
         Route::resource('/konfigurasi', KonfigurasiController::class);
-        Route::get('/jadwal',function(){
-            $data['title'] = 'Jadwal - Periode Perubahan';
-            return view('jadwal.index',$data);
-        })->name('jadwal.index');
+        Route::get('/jadwal', [HitungController::class, 'jadwalindex'])->name('jadwal.index');
+        // Route::get('/jadwal',function(){
+        //     $data['title'] = 'Jadwal - Periode Perubahan';
+        //     return view('jadwal.index',$data);
+        // })->name('jadwal.index');
     }
 );
 Route::get('/login', [UserController::class, 'loginForm'])->name('login');

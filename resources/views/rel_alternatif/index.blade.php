@@ -11,9 +11,9 @@
 			<div class="form-group mr-1">
 				<button class="btn btn-success"><i class="fa fa-search"></i> Cari</button>
 			</div>
-			<div class="form-group mr-1">
+			{{-- <div class="form-group mr-1">
 				<a class="btn btn-primary" href="#"><i class="fa fa-plus"></i> Pengajuan Baru</a>
-			</div>
+			</div> --}}
 			<div class="form-group mr-1" {{ is_hidden('rel_alternatif.cetak') }}>
 				<a class="btn btn-default" href="{{ route('rel_alternatif.cetak') }}" target="_blank"><span class="fa fa-print"></span> Cetak</a>
 			</div>
@@ -56,8 +56,10 @@
 				@endforeach --}}
 				<td>{{ $row->jenis_tindakan }}</td>
 				<td>
-					<a class="btn btn-xs btn-danger" href="#"> Berhenti HD</a>
-					<a class="btn btn-xs btn-primary" href="{{ route('rel_alternatif.edit', $row) }}" {{ is_hidden('rel_alternatif.edit') }}><i class="fa fa-edit"></i> Pengajuan Jadwal</a>
+					<button type="" class="btn btn-xs btn-danger" onclick="batalkan('{{$row->kode_alternatif}}')"> Berhenti HD</button>
+					@if($row->status == 0)
+						<a class="btn btn-xs btn-primary" href="{{ route('rel_alternatif.edit', $row) }}" {{ is_hidden('rel_alternatif.edit') }}><i class="fa fa-edit"></i> Pengajuan Jadwal</a>
+					@endif	
 				</td>
 			</tr>
 			@endforeach
@@ -70,3 +72,26 @@
 	@endif
 </div>
 @endsection
+
+<script>
+	function batalkan(kode) {
+
+		var confirmed = confirm("Apakah Anda Yakin ?");
+
+		if (confirmed) {
+			var xhr = new XMLHttpRequest();
+
+			xhr.open('GET', '/api/updatestatus/'+kode+'?status=0', true);
+
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					var response = xhr.responseText;
+					window.location.href = "/rel_alternatif";
+				}
+			};
+
+			xhr.send(); 
+		}
+	}
+
+</script>

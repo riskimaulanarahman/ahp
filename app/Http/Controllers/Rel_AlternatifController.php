@@ -26,7 +26,7 @@ class Rel_AlternatifController extends Controller
         $data['q'] = $request->input('q');
         $data['title'] = 'Pengajuan Jadwal HD';
         $data['limit'] = 10;
-        $data['rows'] = Alternatif::select('tb_alternatif.*','tb_rel_alternatif.tgl_pengajuan','tb_rel_alternatif.jam_pengajuan','tb_rel_alternatif.jenis_tindakan')
+        $data['rows'] = Alternatif::select('tb_alternatif.*','tb_rel_alternatif.tgl_pengajuan','tb_rel_alternatif.jam_pengajuan','tb_rel_alternatif.jenis_tindakan','tb_rel_alternatif.status')
             ->where('nama_alternatif', 'like', '%' . $data['q'] . '%')
             ->leftJoin('tb_rel_alternatif','tb_alternatif.kode_alternatif','tb_rel_alternatif.kode_alternatif')
             ->orderBy('kode_alternatif')
@@ -126,5 +126,17 @@ class Rel_AlternatifController extends Controller
     public function destroy(Rel_Alternatif $rel_Alternatif)
     {
         //
+    }
+
+    public function updstatus(Request $request, $kode) {
+        $getdata = Rel_Alternatif::where('kode_alternatif',$kode)
+        ->get();
+        foreach($getdata as $data) {
+            $data->status = $request->status;
+            $data->save();
+        }
+
+        return $getdata;
+
     }
 }

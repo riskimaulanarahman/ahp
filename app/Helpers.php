@@ -191,6 +191,38 @@ function get_alternatif()
     }
     return $arr;
 }
+function get_jadwalalternatif()
+{
+    $rows = get_results("SELECT tb_alternatif.* ,tb_rel_alternatif.jenis_tindakan
+    FROM tb_alternatif 
+    LEFT JOIN tb_rel_alternatif ON tb_alternatif.kode_alternatif = tb_rel_alternatif.kode_alternatif
+    WHERE tb_rel_alternatif.kode_kriteria = 'K01'
+    ORDER BY tb_alternatif.kode_alternatif");
+
+$rows2 = get_results("SELECT tb_alternatif.* ,tb_rel_alternatif.jenis_tindakan,tb_rel_alternatif.kode_crips, tb_rel_alternatif.kode_kriteria, tb_crips.nama_crips
+FROM tb_alternatif 
+LEFT JOIN tb_rel_alternatif ON tb_alternatif.kode_alternatif = tb_rel_alternatif.kode_alternatif
+LEFT JOIN tb_crips ON tb_rel_alternatif.kode_crips = tb_crips.kode_crips
+ORDER BY tb_alternatif.kode_alternatif");
+
+$arr = array();
+foreach ($rows as $row) {
+$arr[$row->kode_alternatif] = (array) $row;
+}
+
+// Add the kode_crips and nama_crips from $rows2 to $arr
+foreach ($rows2 as $row) {
+$arr[$row->kode_alternatif][$row->kode_kriteria] = $row->kode_crips;
+$arr[$row->kode_alternatif]['nama_'.$row->kode_kriteria] = $row->nama_crips;
+}
+
+    return $arr;
+    // $arr = array();
+    // foreach ($rows as $row) {
+    //     $arr[$row->kode_alternatif] = $row;
+    // }
+    // return $arr;
+}
 function get_crips()
 {
     $rows = get_results("SELECT * FROM tb_crips ORDER BY kode_crips");
@@ -203,6 +235,15 @@ function get_crips()
 function get_rel_alternatif()
 {
     $rows = get_results("SELECT * FROM tb_rel_alternatif ORDER BY kode_alternatif, kode_kriteria");
+    $arr = array();
+    foreach ($rows as $row) {
+        $arr[$row->kode_alternatif][$row->kode_kriteria] = $row->kode_crips;
+    }
+    return $arr;
+}
+function get_jadwal()
+{
+    $rows = get_results("SELECT * FROM tb_rel_alternatif where `status`=1 ORDER BY kode_alternatif, kode_kriteria");
     $arr = array();
     foreach ($rows as $row) {
         $arr[$row->kode_alternatif][$row->kode_kriteria] = $row->kode_crips;
