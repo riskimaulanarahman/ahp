@@ -1,6 +1,11 @@
 @extends('layout.app')
 @section('title', $title)
 @section('content')
+<style>
+    .merah {
+        background-color: lightcoral;
+    }
+</style>
 {{ show_msg() }}
 
 <div class="card card-primary card-outline">
@@ -8,7 +13,7 @@
         <h3 class="card-title">Periode Perubahan</h3>
     </div>
     <div class="card-body p-0 table-responsive">
-        <table class="table table-bordered table-hover" style="font-size:12px;">
+        <table class="table table-bordered" style="font-size:12px;">
             {{-- <thead>
                 <th>Prioritas</th>
                 <th {{ is_hidden('is_admin') }}>NRM/Nama</th>
@@ -51,14 +56,14 @@
                     <th>Shift 2</th>
                 </tr>
 			</thead>
-            @foreach($rank as $key => $val)
             {{-- {{dd($key)}} --}}
             {{-- &#9989; --}}
             {{-- &nbsp; --}}
-            <tr>
+            @foreach($rank as $key => $val)
+            <tr class="{{ ($alternatifs[$key]['jenis_tindakan'] == 'inisiasi') ? 'merah' : '' }}">
                 <td>{{ $val }}</td>
                 <td>{{ $key }}/{{ $alternatifs[$key]['nama_alternatif'] }}</td>
-                <td>null</td>
+                <td>{{ ($alternatifs[$key]['jenis_tindakan'] == 'inisiasi') ? 3 : 2 }}</td>
                 <td>{{ $alternatifs[$key]['jenis_tindakan'] }}</td>
                 <td><input type="checkbox" onclick="tambahshift(this)" id="checkbox_{{ $key }}"></td> 
                 <td><input type="checkbox" onclick="tambahshift(this)" id="checkbox_{{ $key }}"></td>
@@ -72,7 +77,6 @@
                 <td><input type="checkbox" onclick="tambahshift(this)" id="checkbox_{{ $key }}"></td>
                 <td><input type="checkbox" onclick="tambahshift(this)" id="checkbox_{{ $key }}"></td>
                 <td><input type="checkbox" onclick="tambahshift(this)" id="checkbox_{{ $key }}"></td>
-                {{-- <td><input type="checkbox" onclick="tambahshift()" id="checkbox_{{ $key }}"></td> --}}
                 <td>{{ $alternatifs[$key]['nama_K01'] }}</td>
                 <td>{{ $alternatifs[$key]['nama_K02'] }}</td>
                 <td>{{ $alternatifs[$key]['nama_K03'] }}</td>
@@ -81,15 +85,6 @@
                 <td>{{ round($total[$key], 4) }}</td>
             </tr>
             @endforeach
-            {{-- @foreach($rank as $key => $val)
-            <tr>
-                <td>{{ $val }}</td>
-                <td {{ is_hidden('is_admin') }}>{{ $key }}/{{ $alternatifs[$key]->nama_alternatif }}</td>
-                <td>dummy</td>
-                <td>dummy</td>
-                <td {{ is_hidden('is_admin') }}>{{ round($total[$key], 4) }}</td>
-            </tr>
-            @endforeach --}}
         </table>
     </div>
     {{-- <div class="card-footer">
