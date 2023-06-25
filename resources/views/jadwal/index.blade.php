@@ -92,9 +92,9 @@
             @endforeach --}}
         </table>
     </div>
-    <div class="card-footer">
+    {{-- <div class="card-footer">
         <a class="btn btn-default" href="{{ route('hitung.cetak') }}" target="_blank"><span class="fa fa-print"></span> Cetak</a>
-    </div>
+    </div> --}}
 </div>
 
 
