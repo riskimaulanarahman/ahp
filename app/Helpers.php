@@ -309,8 +309,9 @@ function is_able($action)
             // 'rel_kriteria.index', 'rel_kriteria.simpan',
             // 'rel_crips.index', 'rel_crips.simpan',
             'alternatif.index', 'alternatif.create', 'alternatif.store', 'alternatif.edit', 'alternatif.update', 'alternatif.destroy', 'alternatif.cetak', 'alternatif.detail', 'alternatif.detail.update',
-            // 'rel_alternatif.index', 'rel_alternatif.edit', 'rel_alternatif.update',
+            'rel_alternatif.index', 'rel_alternatif.edit', 'rel_alternatif.update',
             'hitung.index', 'hitung.cetak',
+            'jadwal.index',
         ],
     ];
     $user = Auth::user();

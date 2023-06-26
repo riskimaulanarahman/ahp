@@ -227,7 +227,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" {{ is_hidden('rel_alternatif.index') }}>
                             <a href="{{ route('jadwal.index') }}" class="nav-link">
                                 <i class="nav-icon far fa-circle text-primary"></i>
                                 <p>
