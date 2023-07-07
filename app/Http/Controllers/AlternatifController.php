@@ -62,7 +62,7 @@ class AlternatifController extends Controller
     public function create()
     {
         $data['title'] = 'Pendaftaran Pasien';
-        $data['unitasal'] = get_results("SELECT * FROM tb_crips WHERE kode_kriteria = 'K05' ");
+        // $data['unitasal'] = get_results("SELECT * FROM tb_crips WHERE kode_kriteria = 'K05' ");
         return view('alternatif.create', $data);
     }
 
