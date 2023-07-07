@@ -101,12 +101,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    {{-- <form> --}}
                         <div class="form-group">
                             <label for="nama_norm">Cek Disini :</label>
                             <input type="number" class="form-control" id="typenik" placeholder="Ketik NIK...">
                         </div>
-                    </form>
+                    {{-- </form> --}}
                     <div id="resultjadwal"></div>
                 </div>
                 <div class="modal-footer">

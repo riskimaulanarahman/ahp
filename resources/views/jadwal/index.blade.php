@@ -105,7 +105,7 @@
                 <td>{{ $alternatifs[$key]['nama_K01'] }}</td>
                 <td>{{ $alternatifs[$key]['nama_K02'] }}</td>
                 <td>{{ $alternatifs[$key]['nama_K03'] }}</td>
-                <td>{{ $alternatifs[$key]['nama_K05'] }}</td>
+                <td>{{ $alternatifs[$key]['unit_asal'] }}</td>
                 <td>{{ $alternatifs[$key]['nama_K04'] }}</td>
                 <td>{{ round($total[$key], 4) }}</td>
             </tr>

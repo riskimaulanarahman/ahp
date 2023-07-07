@@ -27,7 +27,7 @@ class AlternatifController extends Controller
         $kode_alternatif = $request->get('kode_alternatif');
         $data['row'] = Alternatif::findOrFail($kode_alternatif);
         $data['nilais'] = get_results("SELECT * FROM tb_rel_alternatif r INNER JOIN tb_kriteria k ON k.kode_kriteria=r.kode_kriteria WHERE kode_alternatif='$kode_alternatif'");
-        $data['title'] = 'Detail Nilai Alternatif';
+        $data['title'] = 'Detail Kriteria';
         return view('alternatif.detail', $data);
     }
 
@@ -88,7 +88,7 @@ class AlternatifController extends Controller
         $alternatif->save();
 
         $relalt = query("INSERT INTO tb_rel_alternatif (kode_alternatif, kode_kriteria) SELECT ?, kode_kriteria FROM tb_kriteria", [$alternatif->kode_alternatif]);
-        $updrelalt = query("UPDATE tb_rel_alternatif set kode_crips='$request->unitasal' where kode_alternatif='$request->kode_alternatif' and kode_kriteria='K05'");
+        // $updrelalt = query("UPDATE tb_rel_alternatif set kode_crips='$request->unitasal' where kode_alternatif='$request->kode_alternatif' and kode_kriteria='K05'");
 
         // for ($i=1; $i <= 3; $i++) { 
         //     $shiftdata = query("INSERT INTO tb_shiftdata (kode_alternatif,hari,shift,value) VALUES ('$request->kode_alternatif',?,$i,0)");
@@ -128,11 +128,11 @@ class AlternatifController extends Controller
         ->leftJoin('tb_rel_alternatif','tb_alternatif.kode_alternatif','tb_rel_alternatif.kode_alternatif')
         ->leftJoin('tb_crips','tb_rel_alternatif.kode_crips','tb_crips.kode_crips')
         ->where('tb_alternatif.kode_alternatif',$alternatif->kode_alternatif)
-        ->where('tb_rel_alternatif.kode_kriteria','K05')
+        ->where('tb_rel_alternatif.kode_kriteria','K01')
         ->first();
         $data['row'] = $newalt;
         $data['title'] = 'Ubah Data Pasien';
-        $data['unitasal'] = get_results("SELECT * FROM tb_crips WHERE kode_kriteria = 'K05' ");
+        // $data['unitasal'] = get_results("SELECT * FROM tb_crips WHERE kode_kriteria = 'K05' ");
 
         return view('alternatif.edit', $data);
     }
@@ -156,7 +156,7 @@ class AlternatifController extends Controller
         $alternatif->fill($request->all());
         $alternatif->save();
 
-        $updrelalt = query("UPDATE tb_rel_alternatif set kode_crips='$request->unitasal' where kode_alternatif='$request->kode_alternatif' and kode_kriteria='K05'");
+        // $updrelalt = query("UPDATE tb_rel_alternatif set kode_crips='$request->unitasal' where kode_alternatif='$request->kode_alternatif' and kode_kriteria='K05'");
 
         return redirect('alternatif')->with('message', 'Data berhasil diubah!');
     }

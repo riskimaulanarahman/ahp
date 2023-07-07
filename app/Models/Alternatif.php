@@ -23,6 +23,7 @@ class Alternatif extends Model
         'tgl_lahir',
         'tgl_daftar',
         'total',
+        'unit_asal',
         'rank'
     ];
 }

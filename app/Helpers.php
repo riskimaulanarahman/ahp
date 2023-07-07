@@ -237,6 +237,7 @@ function get_jadwalalternatif()
     }
 
     foreach ($rows3 as $row) {
+        
         $day = $row->hari;
         $shift = $row->shift;
         $value = $row->value;
@@ -251,8 +252,8 @@ function get_jadwalalternatif()
             $totalValue = 1;
         }
 
+        
         $arr[$row->kode_alternatif]['totalshift'] = $totalValue;
-
     }
 
     return $arr;

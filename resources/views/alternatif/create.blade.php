@@ -14,7 +14,7 @@
 					</div>
 					<div class="form-group">
 						<label>NIK <span class="text-danger">*</span></label>
-						<input class="form-control" type="text" name="nik" value="{{ old('nik') }}" />
+						<input class="form-control" type="number" name="nik" value="{{ old('nik') }}" />
 					</div>
 					<div class="form-group">
 						<label>Nama <span class="text-danger">*</span></label>
@@ -48,11 +48,17 @@
 					</div>
 					<div class="form-group">
 						<label>Unit Asal <span class="text-danger">*</span></label>
-						<select class="form-control" name="unitasal">
+						{{-- <select class="form-control" name="unitasal">
 								<option value="">- Selected -</option>
 							@foreach($unitasal as $unit)
 								<option value="{{$unit->kode_crips}}">{{$unit->nama_crips}}</option>
 							@endforeach
+						</select> --}}
+						<select class="form-control" name="unit_asal">
+							<option value="">- Selected -</option>
+							<option value="igd">IGD</option>
+							<option value="rawatjalan">Rawat Jalan</option>
+							<option value="rawatinap">Rawat Inap</option>
 						</select>
 					</div>
 				</div>
