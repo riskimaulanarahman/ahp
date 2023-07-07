@@ -36,6 +36,7 @@
 				<th>{{ $kriteria->nama_kriteria }}</th>
 				@endforeach --}}
 				<th>Jenis Tindakan</th>
+				<th>Status</th>
 				<th>Aksi</th>
 			</thead>
 			@foreach($rows as $key => $row)
@@ -56,10 +57,26 @@
 				@endforeach --}}
 				<td>{{ $row->jenis_tindakan }}</td>
 				<td>
-					<button type="" class="btn btn-xs btn-danger" onclick="batalkan('{{$row->kode_alternatif}}')"> Berhenti HD</button>
 					@if($row->status == 0)
-						<a class="btn btn-xs btn-primary" href="{{ route('rel_alternatif.edit', $row) }}" {{ is_hidden('rel_alternatif.edit') }}><i class="fa fa-edit"></i> Pengajuan Jadwal</a>
-					@endif	
+						<button type="" class="btn btn-xs btn-inverse"> Belum Diajukan</button>
+					@elseif($row->status == 1)
+						<button type="" class="btn btn-xs btn-warning"> Diajukan</button>
+					@elseif($row->status == 2)
+						<button type="" class="btn btn-xs btn-info"> Dijadwalkan</button>
+					@elseif($row->status == 3)
+						<button type="" class="btn btn-xs btn-primary"> Dirujuk</button>
+					@elseif($row->status == 4)
+						<button type="" class="btn btn-xs btn-danger"> Tidak dapat didialisis</button>
+					@endif
+				</td>
+				<td>
+					@if($row->status == 0)
+					<a class="btn btn-xs btn-primary" href="{{ route('rel_alternatif.edit', $row) }}" {{ is_hidden('rel_alternatif.edit') }}><i class="fa fa-edit"></i> Pengajuan Jadwal</a>
+					@elseif($row->status == 1)
+					<button type="" class="btn btn-xs btn-danger" onclick="batalkan('{{$row->kode_alternatif}}')"> Berhenti HD</button>
+					{{-- <button type="" class="btn btn-xs btn-warning"> Dijadwalkan</button> --}}
+					@endif
+
 				</td>
 			</tr>
 			@endforeach

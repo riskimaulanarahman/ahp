@@ -199,29 +199,138 @@ function get_jadwalalternatif()
     WHERE tb_rel_alternatif.kode_kriteria = 'K01'
     ORDER BY tb_alternatif.kode_alternatif");
 
-$rows2 = get_results("SELECT tb_alternatif.* ,tb_rel_alternatif.jenis_tindakan,tb_rel_alternatif.kode_crips, tb_rel_alternatif.kode_kriteria, tb_crips.nama_crips
-FROM tb_alternatif 
-LEFT JOIN tb_rel_alternatif ON tb_alternatif.kode_alternatif = tb_rel_alternatif.kode_alternatif
-LEFT JOIN tb_crips ON tb_rel_alternatif.kode_crips = tb_crips.kode_crips
-ORDER BY tb_alternatif.kode_alternatif");
+    $rows2 = get_results("SELECT tb_alternatif.* ,
+    tb_rel_alternatif.jenis_tindakan,
+    tb_rel_alternatif.kode_crips,
+    tb_rel_alternatif.kode_kriteria,
+    tb_crips.nama_crips,
+    tb_shiftdata.hari,
+    tb_shiftdata.shift,
+    tb_shiftdata.value
+    FROM tb_alternatif 
+    LEFT JOIN tb_rel_alternatif ON tb_alternatif.kode_alternatif = tb_rel_alternatif.kode_alternatif
+    LEFT JOIN tb_shiftdata ON tb_rel_alternatif.kode_alternatif = tb_shiftdata.kode_alternatif
+    LEFT JOIN tb_crips ON tb_rel_alternatif.kode_crips = tb_crips.kode_crips
+    ORDER BY tb_alternatif.kode_alternatif");
 
-$arr = array();
-foreach ($rows as $row) {
-$arr[$row->kode_alternatif] = (array) $row;
-}
+    $rows3 = get_results("SELECT tb_alternatif.kode_alternatif ,
+    tb_shiftdata.hari,
+    tb_shiftdata.shift,
+    tb_shiftdata.value
+    FROM tb_alternatif 
+    LEFT JOIN tb_shiftdata ON tb_alternatif.kode_alternatif = tb_shiftdata.kode_alternatif
+    ");
 
-// Add the kode_crips and nama_crips from $rows2 to $arr
-foreach ($rows2 as $row) {
-$arr[$row->kode_alternatif][$row->kode_kriteria] = $row->kode_crips;
-$arr[$row->kode_alternatif]['nama_'.$row->kode_kriteria] = $row->nama_crips;
-}
+
+    $arr = array();
+    $totalValue = 0;
+
+    // Mengubah array hasil menjadi JSON
+    $jsonResult = json_encode($arr);
+    foreach ($rows as $row) {
+        $arr[$row->kode_alternatif] = (array) $row;
+    }
+
+    foreach ($rows2 as $row) {
+        $arr[$row->kode_alternatif][$row->kode_kriteria] = $row->kode_crips;
+        $arr[$row->kode_alternatif]['nama_'.$row->kode_kriteria] = $row->nama_crips;
+    }
+
+    foreach ($rows3 as $row) {
+        $day = $row->hari;
+        $shift = $row->shift;
+        $value = $row->value;
+    
+        // Membuat array baru untuk setiap shift dengan value yang sesuai
+        $shiftArray = ["shift_" . $shift => $value];
+    
+        // Menambahkan array shiftArray ke dalam array yang sesuai berdasarkan hari
+        $arr[$row->kode_alternatif][$day][] = $shiftArray;
+
+        if ($value == 1) {
+            $totalValue = 1;
+        }
+
+        $arr[$row->kode_alternatif]['totalshift'] = $totalValue;
+
+    }
 
     return $arr;
-    // $arr = array();
-    // foreach ($rows as $row) {
-    //     $arr[$row->kode_alternatif] = $row;
-    // }
-    // return $arr;
+
+}
+function get_cekjadwal($nik)
+{
+    $rows = get_results("SELECT tb_alternatif.* ,tb_rel_alternatif.jenis_tindakan
+    FROM tb_alternatif 
+    LEFT JOIN tb_rel_alternatif ON tb_alternatif.kode_alternatif = tb_rel_alternatif.kode_alternatif
+    WHERE tb_rel_alternatif.kode_kriteria = 'K01'
+    ORDER BY tb_alternatif.kode_alternatif");
+
+    $rows2 = get_results("SELECT tb_alternatif.* ,
+    tb_rel_alternatif.jenis_tindakan,
+    tb_rel_alternatif.kode_crips,
+    tb_rel_alternatif.kode_kriteria,
+    tb_crips.nama_crips,
+    tb_shiftdata.hari,
+    tb_shiftdata.shift,
+    tb_shiftdata.value
+    FROM tb_alternatif 
+    LEFT JOIN tb_rel_alternatif ON tb_alternatif.kode_alternatif = tb_rel_alternatif.kode_alternatif
+    LEFT JOIN tb_shiftdata ON tb_rel_alternatif.kode_alternatif = tb_shiftdata.kode_alternatif
+    LEFT JOIN tb_crips ON tb_rel_alternatif.kode_crips = tb_crips.kode_crips
+    ORDER BY tb_alternatif.kode_alternatif");
+
+    $rows3 = get_results("SELECT tb_alternatif.kode_alternatif ,
+    tb_shiftdata.hari,
+    tb_shiftdata.shift,
+    tb_shiftdata.value
+    FROM tb_alternatif 
+    LEFT JOIN tb_shiftdata ON tb_alternatif.kode_alternatif = tb_shiftdata.kode_alternatif
+    ");
+
+
+    $arr = array();
+    $totalValue = 0;
+
+    $jsonResult = json_encode($arr);
+    foreach ($rows as $row) {
+        $arr = (array) $row;
+    }
+
+    foreach ($rows2 as $row) {
+        $arr[$row->kode_kriteria] = $row->kode_crips;
+        $arr['nama_'.$row->kode_kriteria] = $row->nama_crips;
+    }
+
+    foreach ($rows3 as $row) {
+        $day = $row->hari;
+        $shift = $row->shift;
+        $value = $row->value;
+    
+        $shiftArray = ["shift_" . $shift => $value];
+    
+        $arr[$day][] = $shiftArray;
+
+        if ($value == 1) {
+            $totalValue = 1;
+        }
+
+        $arr['totalshift'] = $totalValue;
+
+    }
+
+    $data = [];
+
+// Mencari nik dengan value 123
+    foreach ($arr as $key => $value) {
+        if ($key === 'nik' && $value === $nik) {
+            $data = $arr;
+            break;
+        }
+    }
+
+    return $data;
+
 }
 function get_crips()
 {
@@ -286,6 +395,7 @@ function is_able($action)
             'hitung.index', 'hitung.cetak',
             'konfigurasi.index', 'konfigurasi.create', 'konfigurasi.store', 'konfigurasi.edit', 'konfigurasi.update', 'konfigurasi.destroy',
             'jadwal.index',
+            'daftartindakan.index','daftartindakan.create','daftartindakan.store','daftartindakan.edit','daftartindakan.update','daftartindakan.destroy',
         ],
         'user' => [
             'home',

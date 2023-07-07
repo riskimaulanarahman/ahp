@@ -24,6 +24,7 @@
 			<thead>
 				<th>No</th>
 				<th>No RM</th>
+				<th>NIK</th>
 				<th>Nama</th>
 				<th>Tgl Lahir</th>
 				<th>Tempat Lahir</th>
@@ -34,6 +35,7 @@
 			<tr>
 				<td>{{ ($rows->currentPage() - 1) * $limit + $key + 1 }}</td>
 				<td>{{ $row->kode_alternatif }}</td>
+				<td>{{ $row->nik }}</td>
 				<td><a href="{{ route('alternatif.detail', ['kode_alternatif'=> $row ]) }}">{{ $row->nama_alternatif }}</a></td>
 				<td>{{ $row->tgl_lahir }}</td>
 				<td>{{ $row->tempat_lahir }}</td>

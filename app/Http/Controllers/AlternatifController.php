@@ -76,10 +76,12 @@ class AlternatifController extends Controller
     {
         $request->validate([
             'kode_alternatif' => 'required|unique:tb_alternatif',
+            'nik' => 'required|unique:tb_alternatif',
             'nama_alternatif' => 'required',
         ], [
             'kode_alternatif.required' => 'Kode harus diisi',
             'kode_alternatif.unique' => 'Kode harus unik',
+            'nik.unique' => 'NIK sudah ada',
             'nama_alternatif.required' => 'Nama harus diisi',
         ]);
         $alternatif = new Alternatif($request->all());
@@ -87,6 +89,18 @@ class AlternatifController extends Controller
 
         $relalt = query("INSERT INTO tb_rel_alternatif (kode_alternatif, kode_kriteria) SELECT ?, kode_kriteria FROM tb_kriteria", [$alternatif->kode_alternatif]);
         $updrelalt = query("UPDATE tb_rel_alternatif set kode_crips='$request->unitasal' where kode_alternatif='$request->kode_alternatif' and kode_kriteria='K05'");
+
+        // for ($i=1; $i <= 3; $i++) { 
+        //     $shiftdata = query("INSERT INTO tb_shiftdata (kode_alternatif,hari,shift,value) VALUES ('$request->kode_alternatif',?,$i,0)");
+        // }
+        $hari = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu'];
+
+        foreach ($hari as $day) {
+            for ($i = 1; $i <= 3; $i++) {
+                $shiftdata = query("INSERT INTO tb_shiftdata (kode_alternatif, hari, shift, value) VALUES ('$request->kode_alternatif', '$day', $i, 0)");
+            }
+        }
+
 
         return redirect('alternatif')->with('message', 'Data berhasil ditambah!');
     }
@@ -156,6 +170,7 @@ class AlternatifController extends Controller
     public function destroy(Alternatif $alternatif)
     {
         query("DELETE FROM tb_rel_alternatif WHERE kode_alternatif=?", [$alternatif->kode_alternatif]);
+        query("DELETE FROM tb_shiftdata WHERE kode_alternatif=?", [$alternatif->kode_alternatif]);
         $alternatif->delete();
         return redirect('alternatif')->with('message', 'Data berhasil dihapus!');
     }

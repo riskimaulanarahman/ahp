@@ -227,11 +227,19 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item" {{ is_hidden('rel_alternatif.index') }}>
+                        <li class="nav-item" {{ is_hidden('jadwal.index') }}>
                             <a href="{{ route('jadwal.index') }}" class="nav-link">
                                 <i class="nav-icon far fa-circle text-primary"></i>
                                 <p>
                                     Jadwal HD
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" {{ is_hidden('daftartindakan.index') }}>
+                            <a href="{{ route('daftartindakan.index') }}" class="nav-link">
+                                <i class="nav-icon far fa-circle text-primary"></i>
+                                <p>
+                                    Daftar Tindakan
                                 </p>
                             </a>
                         </li>

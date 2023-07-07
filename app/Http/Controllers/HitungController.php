@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use AHP;
+use Illuminate\Http\Request;
 use App\Models\Alternatif;
 use App\Models\Kriteria;
+use App\Models\Shiftdata;
 
 class HitungController extends Controller
 {
@@ -133,7 +135,6 @@ class HitungController extends Controller
             $data['kriterias'][$row->kode_kriteria] = $row;
         }
 
-        // $data['total'] = 0;
         $totalan = array();
         /** perulangan sesuai jumlah alternatif */
         foreach ($data['rel_nilai'] as $key => $val) {
@@ -151,11 +152,6 @@ class HitungController extends Controller
         }
         
         /** mencari rangking berdasarkan total */
-        // if($totalan == null) {
-        //     $hasilan = 0;
-        // } else {
-        //     $hasilan = 1;
-        // }
         if($totalan == null) {
             return redirect()->route('message')->with('message', "Belum ada Jadwal yang diajukan.");
         } else {
@@ -167,10 +163,26 @@ class HitungController extends Controller
         }
         /** menyimpan data semua alternatif */
         $data['alternatifs'] = get_jadwalalternatif();
+
+        // return $data['alternatifs'];
         
         $data['title'] = 'Jadwal HD';
 
         return view('jadwal.index', $data);
+    }
+
+    public function getjadwalbynik(Request $request) {
+        $data['jadwal'] = get_cekjadwal($request->nik);
+        return $data;
+    }
+
+    public function updatejadwal(Request $request) {
+        $data = Shiftdata::where('kode_alternatif',$request->kode)
+        ->where('hari',$request->hari)
+        ->where('shift',$request->shift)
+        ->first();
+        $data->value = $request->value;
+        $data->save();
     }
 
     /** fungsi perangkingan */

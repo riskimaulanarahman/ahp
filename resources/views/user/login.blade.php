@@ -95,7 +95,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel">Cek Jadwal</h5>
+                    <h5 class="modal-title" id="myModalLabel">Jadwal Pasien</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -103,10 +103,11 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="nama_norm">Nama/No Rm:</label>
-                            <input type="text" class="form-control" id="nama_norm" placeholder="ketik disini...">
+                            <label for="nama_norm">Cek Disini :</label>
+                            <input type="number" class="form-control" id="typenik" placeholder="Ketik NIK...">
                         </div>
                     </form>
+                    <div id="resultjadwal"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -127,7 +128,78 @@
     </script>
     <script>
         $('#tampiljadwal').on('click',function(){
-            alert('coming soon')
+            var nik = $('#typenik').val();
+            // alert(nik)
+            $.ajax({
+                url: '/getjadwalbynik',
+                type: 'POST',
+                data: {
+                    // your data object
+                    nik
+                },
+                success: function(response) {
+                    // Success callback function
+                    // console.log('Success:', response.jadwal);
+                    // Perform actions based on the success response
+
+                    // Assuming you have the JSON response stored in a variable called 'response'
+
+// Assuming you have the JSON response stored in a variable called 'response'
+
+// Assuming you have the JSON response stored in a variable called 'response'
+
+// Parse the JSON response
+var data = response;
+
+// Create a formatted string to display the schedule information
+// var scheduleInfo = "<h2>Jadwal:</h2>";
+// scheduleInfo += "<p><strong>Kode Alternatif:</strong> " + data.jadwal.kode_alternatif + "</p>";
+var scheduleInfo = "<p><strong>NIK:</strong> " + data.jadwal.nik + "</p>";
+scheduleInfo += "<p><strong>Nama:</strong> " + data.jadwal.nama_alternatif + "</p>";
+scheduleInfo += "<p><strong>Tempat Lahir:</strong> " + data.jadwal.tempat_lahir + "</p>";
+scheduleInfo += "<p><strong>Telepon:</strong> " + data.jadwal.telepon + "</p>";
+scheduleInfo += "<p><strong>Alamat:</strong> " + data.jadwal.alamat + "</p>";
+scheduleInfo += "<p><strong>Tanggal Lahir:</strong> " + data.jadwal.tgl_lahir + "</p>";
+scheduleInfo += "<p><strong>Tanggal Daftar:</strong> " + data.jadwal.tgl_daftar + "</p>";
+// scheduleInfo += "<p><strong>Keterangan:</strong> " + data.jadwal.keterangan + "</p>";
+// scheduleInfo += "<p><strong>Total:</strong> " + data.jadwal.total + "</p>";
+// scheduleInfo += "<p><strong>Rank:</strong> " + data.jadwal.rank + "</p>";
+scheduleInfo += "<p><strong>Jenis Tindakan:</strong> " + data.jadwal.jenis_tindakan + "</p>";
+
+// Create a list of the "hari" data
+scheduleInfo += "<h3>Jadwal Harian:</h3>";
+scheduleInfo += "<ul>";
+var days = ["senin", "selasa", "rabu", "kamis", "jumat", "sabtu"];
+days.forEach(function(day) {
+  if (data.jadwal[day] && data.jadwal[day].length > 0) {
+    scheduleInfo += "<li><strong>" + day + ":</strong>";
+    scheduleInfo += "<ul>";
+    data.jadwal[day].forEach(function(shiftData) {
+      Object.keys(shiftData).forEach(function(shift) {
+        var value = shiftData[shift];
+        var checkmarkSymbol = (value === 1) ? "<span class='checkmark'>&#10004;</span>" : "";
+        scheduleInfo += "<li>" + shift + ": " + checkmarkSymbol + "</li>";
+      });
+    });
+    scheduleInfo += "</ul>";
+    scheduleInfo += "</li>";
+  }
+});
+scheduleInfo += "</ul>";
+
+// Display the formatted schedule information in the 'resultjadwal' div
+$('#resultjadwal').html(scheduleInfo);
+
+
+
+                },
+                error: function(xhr, status, error) {
+                    // Error callback function
+                    console.log('Error:', error);
+                    // Handle the error response
+                }
+            });
+
         })
     </script>
 </body>

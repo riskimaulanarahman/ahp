@@ -14,6 +14,10 @@
 						<input class="form-control" type="text" name="kode_alternatif" value="{{ old('kode_alternatif', $row->kode_alternatif) }}" readonly>
 					</div>
 					<div class="form-group">
+						<label>NIK <span class="text-danger">*</span></label>
+						<input class="form-control" type="text" name="nik" value="{{ old('nik', $row->nik) }}">
+					</div>
+					<div class="form-group">
 						<label>Nama <span class="text-danger">*</span></label>
 						<input class="form-control" type="text" name="nama_alternatif" value="{{ old('nama_alternatif', $row->nama_alternatif) }}">
 					</div>

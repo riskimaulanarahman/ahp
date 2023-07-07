@@ -10,6 +10,7 @@ use App\Http\Controllers\Rel_CripsController;
 use App\Http\Controllers\Rel_KriteriaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KonfigurasiController;
+use App\Http\Controllers\DaftartindakanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,12 +58,20 @@ Route::middleware(['auth', 'level'])->group(
 
         Route::resource('/konfigurasi', KonfigurasiController::class);
         Route::get('/jadwal', [HitungController::class, 'jadwalindex'])->name('jadwal.index');
-        // Route::get('/jadwal',function(){
-        //     $data['title'] = 'Jadwal - Periode Perubahan';
-        //     return view('jadwal.index',$data);
-        // })->name('jadwal.index');
+        
+        Route::resource('/daftartindakan', DaftartindakanController::class);
+
     }
 );
+Route::post('/updatejadwal', [HitungController::class, 'updatejadwal']);
+
 Route::get('/login', [UserController::class, 'loginForm'])->name('login');
 Route::post('/login', [UserController::class, 'loginAction'])->name('login.action');
 Route::get('/message', [HomeController::class, 'message'])->name('message');
+
+Route::post('/getjadwalbynik', [HitungController::class, 'getjadwalbynik']);
+
+// Route::get('testnih',function(){
+//     $data['jadwal'] = get_cekjadwal('123');
+//     return $data;
+// });

@@ -13,6 +13,10 @@
 						<input class="form-control" type="text" name="kode_alternatif" value="{{ old('kode_alternatif', kode_oto('kode_alternatif', 'tb_alternatif', 'A', 2)) }}" />
 					</div>
 					<div class="form-group">
+						<label>NIK <span class="text-danger">*</span></label>
+						<input class="form-control" type="text" name="nik" value="{{ old('nik') }}" />
+					</div>
+					<div class="form-group">
 						<label>Nama <span class="text-danger">*</span></label>
 						<input class="form-control" type="text" name="nama_alternatif" value="{{ old('nama_alternatif') }}" />
 					</div>
