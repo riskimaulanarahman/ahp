@@ -172,7 +172,7 @@ class HitungController extends Controller
     }
 
     public function getjadwalbynik(Request $request) {
-        $data['jadwal'] = get_cekjadwal($request->nik);
+        $data = get_cekjadwal($request->nik);
         return $data;
     }
 

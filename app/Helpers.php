@@ -292,15 +292,15 @@ function get_cekjadwal($nik)
 
     $arr = array();
     $totalValue = 0;
-
     $jsonResult = json_encode($arr);
+
     foreach ($rows as $row) {
-        $arr = (array) $row;
+        $arr[$row->kode_alternatif] = (array) $row;
     }
 
     foreach ($rows2 as $row) {
-        $arr[$row->kode_kriteria] = $row->kode_crips;
-        $arr['nama_'.$row->kode_kriteria] = $row->nama_crips;
+        $arr[$row->kode_alternatif][$row->kode_kriteria] = $row->kode_crips;
+        $arr[$row->kode_alternatif]['nama_'.$row->kode_kriteria] = $row->nama_crips;
     }
 
     foreach ($rows3 as $row) {
@@ -310,29 +310,41 @@ function get_cekjadwal($nik)
     
         $shiftArray = ["shift_" . $shift => $value];
     
-        $arr[$day][] = $shiftArray;
+        $arr[$row->kode_alternatif][$day][] = $shiftArray;
 
         if ($value == 1) {
             $totalValue = 1;
         }
 
-        $arr['totalshift'] = $totalValue;
+        $arr[$row->kode_alternatif]['totalshift'] = $totalValue;
 
     }
 
-    $data = [];
+    // return $arr;
+    // $arrs = json_decode($jsonResult, true);
+    // return $arr;
+    // $nik = '123';
 
-// Mencari nik dengan value 123
+    $data = searchDataByNik($arr, $nik);
+
+    if ($data !== null) {
+        return $data; // Output: {"kode_alternatif":"A02","nik":"9089","nama_alternatif":"joki","tempat_lahir":"balikpapan","telepon":"08123","alamat":"jlan jalan","tgl_lahir":"1990-07-08","tgl_daftar":"2023-07-08","unit_asal":"igd","keterangan":null,"total":0.40799789612635,"rank":1,"created_at":"2023-07-07 20:33:28","updated_at":"2023-07-07 20:52:58","jenis_tindakan":"inisiasi","K04":"KU01","nama_K04":"Ringan","K03":"LK01","nama_K03":"GCS 14 \u2013 15","K02":"PP01","nama_K02":"Sindroma Uremikum","K01":"LF01","nama_K01":"<5ml\/menit","senin":[{"shift_1":0},{"shift_2":0},{"shift_3":0}],"totalshift":1,"selasa":[{"shift_1":0},{"shift_2":0},{"shift_3":0}],"rabu":[{"shift_1":1},{"shift_2":0},{"shift_3":0}],"kamis":[{"shift_1":0},{"shift_2":0},{"shift_3":0}],"jumat":[{"shift_1":0},{"shift_2":0},{"shift_3":0}],"sabtu":[{"shift_1":0},{"shift_2":0},{"shift_3":0}]}
+    } else {
+        echo 'Data not found.';
+    }
+
+}
+
+function searchDataByNik($arr, $nik) {
     foreach ($arr as $key => $value) {
-        if ($key === 'nik' && $value === $nik) {
-            $data = $arr;
-            break;
+        if (isset($value['nik']) && $value['nik'] === $nik) {
+            return $value;
         }
     }
 
-    return $data;
-
+    return null;
 }
+
 function get_crips()
 {
     $rows = get_results("SELECT * FROM tb_crips ORDER BY kode_crips");
