@@ -107,6 +107,7 @@
                             <input type="number" class="form-control" id="typenik" placeholder="Ketik NIK...">
                         </div>
                     {{-- </form> --}}
+                    <hr>
                     <div id="resultjadwal"></div>
                 </div>
                 <div class="modal-footer">

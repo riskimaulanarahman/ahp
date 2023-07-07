@@ -320,15 +320,10 @@ function get_cekjadwal($nik)
 
     }
 
-    // return $arr;
-    // $arrs = json_decode($jsonResult, true);
-    // return $arr;
-    // $nik = '123';
-
     $data = searchDataByNik($arr, $nik);
 
     if ($data !== null) {
-        return $data; // Output: {"kode_alternatif":"A02","nik":"9089","nama_alternatif":"joki","tempat_lahir":"balikpapan","telepon":"08123","alamat":"jlan jalan","tgl_lahir":"1990-07-08","tgl_daftar":"2023-07-08","unit_asal":"igd","keterangan":null,"total":0.40799789612635,"rank":1,"created_at":"2023-07-07 20:33:28","updated_at":"2023-07-07 20:52:58","jenis_tindakan":"inisiasi","K04":"KU01","nama_K04":"Ringan","K03":"LK01","nama_K03":"GCS 14 \u2013 15","K02":"PP01","nama_K02":"Sindroma Uremikum","K01":"LF01","nama_K01":"<5ml\/menit","senin":[{"shift_1":0},{"shift_2":0},{"shift_3":0}],"totalshift":1,"selasa":[{"shift_1":0},{"shift_2":0},{"shift_3":0}],"rabu":[{"shift_1":1},{"shift_2":0},{"shift_3":0}],"kamis":[{"shift_1":0},{"shift_2":0},{"shift_3":0}],"jumat":[{"shift_1":0},{"shift_2":0},{"shift_3":0}],"sabtu":[{"shift_1":0},{"shift_2":0},{"shift_3":0}]}
+        return $data; 
     } else {
         echo 'Data not found.';
     }
