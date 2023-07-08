@@ -70,6 +70,7 @@ Route::post('/login', [UserController::class, 'loginAction'])->name('login.actio
 Route::get('/message', [HomeController::class, 'message'])->name('message');
 
 Route::post('/getjadwalbynik', [HitungController::class, 'getjadwalbynik']);
+Route::post('/updatetindaklanjut', [Rel_AlternatifController::class, 'updatetindaklanjut']);
 
 // Route::get('testnih',function(){
 //     $data['jadwal'] = get_cekjadwal('123');

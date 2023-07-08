@@ -76,11 +76,12 @@
                 <td>{{ ($alternatifs[$key]['jenis_tindakan'] == 'inisiasi') ? 3 : 2 }}</td>
                 <td>{{ $alternatifs[$key]['jenis_tindakan'] }}</td>
                 <td>
-                    <select name="status jadwal" id="">
-                        <option value="2">Dijadwalkan</option>
-                        <option value="3">Dirujuk alasan klinis</option>
-                        <option value="4">Dirujuk alasan sarpras</option>
-                        <option value="5">Tidak layak HD</option>
+                    <select name="tindaklanjut" class="tindaklanjut" data-key="{{$key}}">
+                        <option value="">- Pilih -</option>
+                        <option value="2" {{ ($alternatifs[$key]['tindaklanjut'] == 2) ? 'selected' : '' }}>Dijadwalkan</option>
+                        <option value="3" {{ ($alternatifs[$key]['tindaklanjut'] == 3) ? 'selected' : '' }}>Dirujuk alasan klinis</option>
+                        <option value="4" {{ ($alternatifs[$key]['tindaklanjut'] == 4) ? 'selected' : '' }}>Dirujuk alasan sarpras</option>
+                        <option value="5" {{ ($alternatifs[$key]['tindaklanjut'] == 5) ? 'selected' : '' }}>Tidak layak HD</option>
                     </select>
                 </td>
                 <td><input type="checkbox" onclick="tambahshift(this,'{{$key}}',this.getAttribute('data-shift'),this.getAttribute('data-hari'))" data-shift="1" data-hari="senin" {{($alternatifs[$key]["senin"][0]["shift_1"] == 1) ? "checked" : ''}}></td> 
@@ -121,8 +122,45 @@
 
 
 @endsection
+<script src="{{asset('adminlte3/plugins/jquery/jquery.min.js')}}"></script>
 
 <script>
+$(document).ready(function() {
+    $('.tindaklanjut').change(function() {
+        // Mendapatkan nilai dari elemen dropdown
+        var selectedValue = $(this).val();
+        var key = $(this).data('key');
+
+        // console.log(selectedValue)
+        // console.log(key)
+
+        // Membuat objek data untuk dikirim melalui AJAX
+        var data = {
+            tindaklanjut: selectedValue,
+            kode_alternatif: key
+        };
+
+        console.log(data)
+
+        // Melakukan permintaan AJAX POST
+        $.ajax({
+          url: '/updatetindaklanjut',
+          type: 'POST',
+          data: data,
+          success: function(response) {
+            // Aksi yang dilakukan jika permintaan berhasil
+            alert('Data berhasil disimpan.');
+            location.reload()
+          },
+          error: function(xhr, status, error) {
+            // Aksi yang dilakukan jika permintaan gagal
+            console.log('Permintaan AJAX gagal');
+            console.log('Error:', error);
+          }
+        });
+    });
+});
+
 function tambahshift(check,key,shift,hari) {
     if (check.checked) {
         console.log('check')

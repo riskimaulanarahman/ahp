@@ -117,6 +117,15 @@ class Rel_AlternatifController extends Controller
         return redirect('rel_alternatif')->with('message', 'Data berhasil diubah!');
     }
 
+    public function updatetindaklanjut(Request $request) 
+    {
+        $data = Rel_Alternatif::where('kode_alternatif',$request->kode_alternatif)->get();
+        foreach($data as $d) {
+            $d->status = $request->tindaklanjut;
+            $d->save();
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
