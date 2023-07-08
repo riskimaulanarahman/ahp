@@ -66,18 +66,18 @@
                     <th>Shift 3</th>
                 </tr>
 			</thead>
-            {{-- {{dd($alternatifs["A01"])}} --}}
+            {{-- {{dd($alternatifs)}} --}}
             {{-- &#9989; --}}
             {{-- &nbsp; --}}
             @foreach($rank as $key => $val)
-            <tr class="{{ ($alternatifs[$key]['jenis_tindakan'] == 'inisiasi' && $alternatifs[$key]['totalshift'] == 0 ) ? 'merah' : '' }}">
+            <tr class="{{ ($alternatifs[$key]['totalshift'] == 0 ) ? 'merah' : '' }}">
                 <td>{{ $val }}</td>
                 <td>{{ $key }}/{{ $alternatifs[$key]['nama_alternatif'] }}</td>
                 <td>{{ ($alternatifs[$key]['jenis_tindakan'] == 'inisiasi') ? 3 : 2 }}</td>
                 <td>{{ $alternatifs[$key]['jenis_tindakan'] }}</td>
                 <td>
                     <select name="tindaklanjut" class="tindaklanjut" data-key="{{$key}}">
-                        <option value="">- Pilih -</option>
+                        <option value="1">- Pilih -</option>
                         <option value="2" {{ ($alternatifs[$key]['tindaklanjut'] == 2) ? 'selected' : '' }}>Dijadwalkan</option>
                         <option value="3" {{ ($alternatifs[$key]['tindaklanjut'] == 3) ? 'selected' : '' }}>Dirujuk alasan klinis</option>
                         <option value="4" {{ ($alternatifs[$key]['tindaklanjut'] == 4) ? 'selected' : '' }}>Dirujuk alasan sarpras</option>

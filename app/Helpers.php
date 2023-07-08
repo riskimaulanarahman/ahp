@@ -236,6 +236,8 @@ function get_jadwalalternatif()
         $arr[$row->kode_alternatif]['nama_'.$row->kode_kriteria] = $row->nama_crips;
     }
 
+    $totalShiftValue = [];
+
     foreach ($rows3 as $row) {
         
         $day = $row->hari;
@@ -248,12 +250,19 @@ function get_jadwalalternatif()
         // Menambahkan array shiftArray ke dalam array yang sesuai berdasarkan hari
         $arr[$row->kode_alternatif][$day][] = $shiftArray;
 
-        if ($value == 1) {
-            $totalValue = 1;
+        if ($value > 0) {
+            $totalShiftValue[$row->kode_alternatif] = true;
         }
-
-        
-        $arr[$row->kode_alternatif]['totalshift'] = $totalValue;
+    }
+    
+    // Mengatur totalValue menjadi 0 jika tidak ada shift data
+    foreach ($arr as &$data) {
+        $kode_alternatif = $data['kode_alternatif'];
+        if (isset($totalShiftValue[$kode_alternatif])) {
+            $data['totalshift'] = 1;
+        } else {
+            $data['totalshift'] = 0;
+        }
     }
 
     return $arr;
