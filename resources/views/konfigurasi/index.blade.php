@@ -16,11 +16,15 @@
 							{{ method_field('PUT') }}
 							<div class="form-group">
 								<label>Jumlah Mesin <span class="text-danger">*</span></label>
-								<input class="form-control" type="text" name="jml_mesin" value="{{ old('jml_mesin', $row->jml_mesin) }}" >
+								<input class="form-control" type="number" name="jml_mesin" value="{{ old('jml_mesin', $row->jml_mesin) }}" >
+							</div>
+							<div class="form-group">
+								<label>Jumlah Mesin <span class="text-danger">*</span></label>
+								<input class="form-control" type="number" name="jml_mesinopr" value="{{ old('jml_mesinopr', $row->jml_mesinopr) }}" >
 							</div>
 							<div class="form-group">
 								<label>Jumlah Shift <span class="text-danger">*</span></label>
-								<input class="form-control" type="number" min="1" max="3" name="jml_shift" value="{{ old('jml_shift', $row->jml_shift) }}" readonly>
+								<input class="form-control" type="number" min="1" max="3" name="jml_shift" value="{{ old('jml_shift', $row->jml_shift) }}">
 							</div>
 						</div>
 					</div>

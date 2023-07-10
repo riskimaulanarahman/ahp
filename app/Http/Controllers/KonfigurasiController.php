@@ -14,14 +14,6 @@ class KonfigurasiController extends Controller
      */
     public function index()
     {
-        // $data['q'] = $request->input('q');
-        // $data['title'] = 'Data Konfigurasi';
-        // $data['limit'] = 10;
-        // $data['rows'] = Kriteria::where('nama_kriteria', 'like', '%' . $data['q'] . '%')
-        //     ->orderBy('kode_kriteria')
-        //     ->paginate($data['limit'])->withQueryString();
-        // return view('konfigurasi.index', $data);
-        // return 'sss';
         $data['row'] = Konfigurasi::findOrFail(1);
         $data['title'] = 'Data Konfigurasi';
         return view('konfigurasi.index', $data);
@@ -34,8 +26,7 @@ class KonfigurasiController extends Controller
      */
     public function create()
     {
-        $data['title'] = 'Tambah Kriteria';
-        return view('kriteria.create', $data);
+        //
     }
 
     /**
@@ -46,21 +37,7 @@ class KonfigurasiController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'kode_kriteria' => 'required|unique:tb_kriteria',
-            'nama_kriteria' => 'required',
-        ], [
-            'kode_kriteria.required' => 'Kode kriteria harus diisi',
-            'kode_kriteria.unique' => 'Kode kriteria harus unik',
-            'nama_kriteria.required' => 'Nama kriteria harus diisi',
-        ]);
-        $kriteria = new Kriteria($request->all());
-        $kriteria->save();
-
-        query("INSERT INTO tb_rel_alternatif (kode_alternatif, kode_kriteria) SELECT kode_alternatif, ? FROM tb_alternatif", [$kriteria->kode_kriteria]);
-        query("INSERT INTO tb_rel_kriteria(ID1, ID2, nilai) SELECT '$kriteria->kode_kriteria', kode_kriteria, 1 FROM tb_kriteria");
-        query("INSERT INTO tb_rel_kriteria(ID1, ID2, nilai) SELECT kode_kriteria, '$kriteria->kode_kriteria', 1 FROM tb_kriteria WHERE kode_kriteria<>'$kriteria->kode_kriteria'");
-        return redirect('kriteria')->with('message', 'Data berhasil ditambah!');
+        //
     }
 
     /**
@@ -94,15 +71,11 @@ class KonfigurasiController extends Controller
      * @param  \App\Models\Kriteria  $kriteria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, string $kriteria)
+    public function update(Request $request)
     {
-        // $request->validate([
-        //     'nama_kriteria' => 'required',
-        // ], [
-        //     'nama_kriteria.required' => 'Nama kriteria harus diisi',
-        // ]);
         $kriteria = Konfigurasi::findOrFail(1);
         $kriteria->jml_mesin = $request->jml_mesin;
+        $kriteria->jml_mesinopr = $request->jml_mesinopr;
         $kriteria->jml_shift = $request->jml_shift;
         $kriteria->save();
         return redirect('konfigurasi')->with('message', 'Data berhasil diubah!');
