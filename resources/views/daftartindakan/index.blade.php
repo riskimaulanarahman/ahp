@@ -6,7 +6,7 @@
 	<div class="card-header">
 		<form class="form-inline">
 			<div class="form-group mr-1">
-				<input class="form-control" type="text" name="q" value="{{ $q }}" placeholder="Pencarian..." />
+				<input class="form-control" type="text" name="q" value="{{ $q ?? '' }}" placeholder="Pencarian..." />
 			</div>
 			<div class="form-group mr-1">
 				<button class="btn btn-success"><i class="fa fa-search"></i> Cari</button>

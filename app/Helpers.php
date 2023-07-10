@@ -413,6 +413,7 @@ function is_able($action)
             'konfigurasi.index', 'konfigurasi.create', 'konfigurasi.store', 'konfigurasi.edit', 'konfigurasi.update', 'konfigurasi.destroy',
             'jadwal.index',
             'daftartindakan.index','daftartindakan.create','daftartindakan.store','daftartindakan.edit','daftartindakan.update','daftartindakan.destroy',
+            'laporanbulanan.index','laporantahunan.index',
         ],
         'user' => [
             'home',
@@ -439,6 +440,8 @@ function is_able($action)
             'rel_alternatif.index', 'rel_alternatif.edit', 'rel_alternatif.update',
             'hitung.index', 'hitung.cetak',
             'jadwal.index',
+            'daftartindakan.index','daftartindakan.create','daftartindakan.store','daftartindakan.edit','daftartindakan.update','daftartindakan.destroy',
+            'laporanbulanan.index','laporantahunan.index',
         ],
     ];
     $user = Auth::user();

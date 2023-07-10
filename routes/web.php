@@ -11,6 +11,7 @@ use App\Http\Controllers\Rel_KriteriaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\DaftartindakanController;
+use App\Http\Controllers\LaporanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,6 +61,8 @@ Route::middleware(['auth', 'level'])->group(
         Route::get('/jadwal', [HitungController::class, 'jadwalindex'])->name('jadwal.index');
         
         Route::resource('/daftartindakan', DaftartindakanController::class);
+        Route::get('/laporanbulanan', [LaporanController::class, 'laporanbulanan'])->name('laporanbulanan.index');
+        Route::get('/laporantahunan', [LaporanController::class, 'laporantahunan'])->name('laporantahunan.index');
 
     }
 );

@@ -243,6 +243,22 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item" {{ is_hidden('laporanbulanan.index') }}>
+                            <a href="{{ route('laporanbulanan.index') }}" class="nav-link">
+                                <i class="nav-icon far fa-circle text-primary"></i>
+                                <p>
+                                    Laporan Bulanan
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" {{ is_hidden('laporantahunan.index') }}>
+                            <a href="{{ route('laporantahunan.index') }}" class="nav-link">
+                                <i class="nav-icon far fa-circle text-primary"></i>
+                                <p>
+                                    Laporan Tahunan
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item" {{ is_hidden('hitung.index') }}>
                             <a href="{{ route('hitung.index') }}" class="nav-link">
                                 <i class="nav-icon far fa-circle text-primary"></i>
