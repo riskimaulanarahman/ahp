@@ -29,7 +29,7 @@ class Rel_AlternatifController extends Controller
         $data['rows'] = Alternatif::select('tb_alternatif.*','tb_rel_alternatif.tgl_pengajuan','tb_rel_alternatif.jam_pengajuan','tb_rel_alternatif.jenis_tindakan','tb_rel_alternatif.status')
             ->where('nama_alternatif', 'like', '%' . $data['q'] . '%')
             ->leftJoin('tb_rel_alternatif','tb_alternatif.kode_alternatif','tb_rel_alternatif.kode_alternatif')
-            ->orderBy('kode_alternatif')
+            ->orderBy('tb_alternatif.tgl_daftar','desc')
             ->where('kode_kriteria','K01')
             // ->groupBy('tb_rel_alternatif.kode_alternatif')
             ->paginate($data['limit'])->withQueryString();
