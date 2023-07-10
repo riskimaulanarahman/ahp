@@ -183,55 +183,88 @@ class HomeController extends Controller
         $data['tidaklayak'] = array_merge($data['tidaklayaknow'], $data['tidaklayakless']);
 
         $months = range(1, 12); // Daftar bulan dari 1 hingga 12
+        $status_tindakan = [1 => 'dialisis', 4 => 'dirujukalasansarpras', 3 => 'dirujukalasanklinis', 5 => 'tidaklayakhd'];
 
         $querybulanannow = Tindakan::selectRaw('MONTH(tgl_tindakan) as month, unit_asal, status_tindakan, COUNT(*) as total')
-            ->whereIn('status_tindakan', [1, 3, 4, 5])
+            ->whereIn('status_tindakan', array_keys($status_tindakan))
             ->whereYear('tgl_tindakan', $currentYear)
             ->groupBy('month', 'unit_asal', 'status_tindakan')
             ->orderBy('month')
             ->get();
 
         $querybulananless = Tindakan::selectRaw('MONTH(tgl_tindakan) as month, unit_asal, status_tindakan, COUNT(*) as total')
-            ->whereIn('status_tindakan', [1, 3, 4, 5])
+            ->whereIn('status_tindakan', array_keys($status_tindakan))
             ->whereYear('tgl_tindakan', $previousYear)
             ->groupBy('month', 'unit_asal', 'status_tindakan')
             ->orderBy('month')
             ->get();
 
         // Generate daftar bulan dalam satu tahun
+        // $monthlyData = [];
+        // foreach ($months as $month) {
+        //     $monthlyData[$month] = array_fill_keys($options, 0);
+        // }
+
+        // // Merge hasil query dengan daftar bulan dan unit asal
+        // foreach ($querybulanannow as $item) {
+        //     $month = $item->month;
+        //     $unit = $item->unit_asal;
+        //     $total = $item->total;
+
+        //     $monthlyData[$month][$unit] += $total;
+        // }
         $monthlyData = [];
         foreach ($months as $month) {
-            $monthlyData[$month] = array_fill_keys($options, 0);
+            $monthlyData[$month] = array_fill_keys(array_values($status_tindakan), 0);
         }
 
-        // Merge hasil query dengan daftar bulan dan unit asal
+        // Merge hasil query dengan daftar bulan dan status tindakan
         foreach ($querybulanannow as $item) {
             $month = $item->month;
-            $unit = $item->unit_asal;
+            $status = $item->status_tindakan;
             $total = $item->total;
 
-            $monthlyData[$month][$unit] += $total;
+            $monthlyData[$month][$status_tindakan[$status]] += $total;
+        }
+
+        $monthlyDataless = [];
+        foreach ($months as $month) {
+            $monthlyDataless[$month] = array_fill_keys(array_values($status_tindakan), 0);
+        }
+
+        // Merge hasil query dengan daftar bulan dan status tindakan
+        foreach ($querybulananless as $item) {
+            $month = $item->month;
+            $status = $item->status_tindakan;
+            $total = $item->total;
+
+            $monthlyDataless[$month][$status_tindakan[$status]] += $total;
         }
 
         // Generate daftar bulan dalam satu tahun
-        $monthlyDataless = [];
-        foreach ($months as $month) {
-            $monthlyDataless[$month] = array_fill_keys($options, 0);
-        }
+        // $monthlyDataless = [];
+        // foreach ($months as $month) {
+        //     $monthlyDataless[$month] = array_fill_keys($options, 0);
+        // }
 
-        // Merge hasil query dengan daftar bulan dan unit asal
-        foreach ($querybulananless as $item) {
-            $month = $item->month;
-            $unit = $item->unit_asal;
-            $total = $item->total;
+        // // Merge hasil query dengan daftar bulan dan unit asal
+        // foreach ($querybulananless as $item) {
+        //     $month = $item->month;
+        //     $unit = $item->unit_asal;
+        //     $total = $item->total;
 
-            $monthlyDataless[$month][$unit] += $total;
-        }
+        //     $monthlyDataless[$month][$unit] += $total;
+        // }
 
         $data['resultbulanannow'] = $monthlyData;
         $data['resultbulananless'] = $monthlyDataless;
 
         $data['resultbulanan'] = array_merge($monthlyData,$monthlyDataless);
+
+
+        
+
+        // return $data['resultbulanan'];
         
 
 

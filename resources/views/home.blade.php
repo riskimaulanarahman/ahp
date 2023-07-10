@@ -285,9 +285,10 @@ var monthCategories = [
 // Mengubah data menjadi format yang dapat digunakan oleh Highcharts
 var seriesData = Object.keys(data).map(function (month) {
   return [
-    data[month].igd,
-    data[month].rawatjalan,
-    data[month].rawatinap
+    data[month].dialisis,
+    data[month].dirujukalasansarpras,
+    data[month].dirujukalasanklinis,
+    data[month].tidaklayakhd,
   ];
 });
 
@@ -295,7 +296,7 @@ var seriesData = Object.keys(data).map(function (month) {
 var options = {
   chart: {
     type: 'column',
-    marginRight: 200 // Mengatur margin kanan untuk menyisakan ruang bagi legenda
+    // marginRight: 200 // Mengatur margin kanan untuk menyisakan ruang bagi legenda
   },
   title: {
     text: 'GRAFIK BULANAN LAYANAN HEMODIALISIS'
@@ -309,18 +310,19 @@ var options = {
             text: ''
         }
     },
-    legend: {
-        align: 'right',
-        verticalAlign: 'middle',
-        layout: 'vertical'
-    },
+    // legend: {
+    //     align: 'right',
+    //     verticalAlign: 'middle',
+    //     layout: 'vertical'
+    // },
     credits: {
         enabled: false
     },
   series: [
-    { name: 'IGD', data: seriesData.map(function (data) { return data[0]; }) },
-    { name: 'Rawat Jalan', data: seriesData.map(function (data) { return data[1]; }) },
-    { name: 'Rawat Inap', data: seriesData.map(function (data) { return data[2]; }) }
+    { name: 'Dialisis', data: seriesData.map(function (data) { return data[0]; }) },
+    { name: 'Dirujuk alasan sarpras', data: seriesData.map(function (data) { return data[1]; }) },
+    { name: 'Dirujuk alasan klinis', data: seriesData.map(function (data) { return data[2]; }) },
+    { name: 'Tidak layak HD', data: seriesData.map(function (data) { return data[3]; }) }
   ]
 };
 
