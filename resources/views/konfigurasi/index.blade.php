@@ -19,7 +19,7 @@
 								<input class="form-control" type="number" name="jml_mesin" value="{{ old('jml_mesin', $row->jml_mesin) }}" >
 							</div>
 							<div class="form-group">
-								<label>Jumlah Mesin <span class="text-danger">*</span></label>
+								<label>Jumlah Mesin Beroperasi <span class="text-danger">*</span></label>
 								<input class="form-control" type="number" name="jml_mesinopr" value="{{ old('jml_mesinopr', $row->jml_mesinopr) }}" >
 							</div>
 							<div class="form-group">
