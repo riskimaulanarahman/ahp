@@ -120,7 +120,7 @@
                             <a href="{{ route('home') }}" class="nav-link">
                                 <i class="nav-icon far fa-circle text-primary"></i>
                                 <p>
-                                    Home
+                                    Dashboard
                                 </p>
                             </a>
                         </li>

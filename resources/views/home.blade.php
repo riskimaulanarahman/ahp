@@ -5,7 +5,7 @@
     <div class="col-md-2">
         <div class="card bg-success">
             <div class="card-header">
-                Total Pasien
+                Total Pasien 2023
             </div>
             <div class="card-body">
                 <center><span style="font-size: 35px;"> {{$total_pasien}} </span></center>
@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-2">
+    {{-- <div class="col-md-2">
         <div class="card bg-warning">
             <div class="card-header">
                 Total Tindakan
@@ -27,7 +27,7 @@
                 <a class="text-light" href="{{ route('daftartindakan.index') }}">Selengkapnya <i class="fa fa-arrow-right"></i></a>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="col-md-2">
         <div class="card bg-info">
             <div class="card-header">
@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-2">
+    {{-- <div class="col-md-2">
         <div class="card bg-warning">
             <div class="card-header">
                 Total Dirujuk
@@ -54,7 +54,7 @@
                 <a class="text-light" href="{{ route('daftartindakan.index') }}">Selengkapnya <i class="fa fa-arrow-right"></i></a>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="col-md-2">
         <div class="card bg-danger">
             <div class="card-header">

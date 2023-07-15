@@ -13,10 +13,11 @@ class HomeController extends Controller
 {
     public function show()
     {
-        $data['title'] = 'Home';
-        $data['total_pasien'] = Alternatif::count();
-        $data['total_tindakan'] = Tindakan::count();
         $currentYear = date('Y'); // Mendapatkan tahun berjalan
+
+        $data['title'] = 'Home';
+        $data['total_pasien'] = Alternatif::whereYear('created_at', $currentYear)->count();
+        $data['total_tindakan'] = Tindakan::count();
         $data['yearly_tindakan'] = Tindakan::whereYear('tgl_tindakan', $currentYear)->count();
         $data['total_tindakanklinis'] = Tindakan::where('status_tindakan', 3)->count();
         $data['total_tindakansarpras'] = Tindakan::where('status_tindakan', 4)->count();
